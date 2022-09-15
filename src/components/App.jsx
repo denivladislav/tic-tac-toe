@@ -1,13 +1,8 @@
 import React from 'react';
-
-const HelloWorld = () => {
-  return (
-    <h3>Hello World !!!</h3>
-  );
-};
+import GamePage from './GamePage.jsx';
 
 const App = () => (
-  <HelloWorld />
+  <GamePage />
 );
 
 export default App;
