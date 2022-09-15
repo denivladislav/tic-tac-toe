@@ -1,3 +1,14 @@
 {
-  "enterName": "Введите имя"
+  "general": {
+    "gameName": "Крестики-нолики"
+  },
+  "login": {
+    "enterUsername": "Игрок {{ currentPlayerIndex }} – как тебя зовут?",
+    "submit": "ОК",
+    "username": "Игрок {{ currentPlayerIndex }}"
+  },
+  "errors": {
+    "required": "Обязательное поле",
+    "duplicatedUsername": "Игрок с таким именем уже существует"
+  }
 }

@@ -6,6 +6,8 @@ import store from './slices/index.js';
 import App from './components/App.jsx';
 import translationRU from './assets/locales/ru.json';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default async () => {
   const i18nInstance = i18n.createInstance();
   await i18nInstance.init({
