@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   gameState: 'login',
   players: [],
+  occupiedCells: [],
 };
 
 const gameDataSlice = createSlice({
@@ -15,9 +16,12 @@ const gameDataSlice = createSlice({
     addPlayer: (state, { payload }) => {
       state.players = [...state.players, payload];
     },
+    occupyCell: (state, { payload }) => {
+      state.occupiedCells = [...state.occupiedCells, payload];
+    },
   },
 });
 
-export const { setGameState, addPlayer } = gameDataSlice.actions;
+export const { setGameState, addPlayer, occupyCell } = gameDataSlice.actions;
 
 export default gameDataSlice.reducer;

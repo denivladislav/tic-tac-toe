@@ -18,6 +18,12 @@ const LoginForm = () => {
     inputRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    if (players.length === MAX_NUMBER_OF_PLAYERS) {
+      dispatch(setGameState('game'));
+    }
+  }, [players]);
+
   const loginSchema = Yup.object().shape({
     username: Yup.mixed()
       .required('required')
@@ -35,11 +41,6 @@ const LoginForm = () => {
       inputRef.current.focus();
     }),
   });
-
-  if (players.length === MAX_NUMBER_OF_PLAYERS) {
-    dispatch(setGameState('game'));
-    return;
-  }
 
   const isUsernameValid = !(formik.touched.username && formik.errors.username);
 

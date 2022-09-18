@@ -1,0 +1,38 @@
+.game-field-container {
+  max-width: 600px !important;
+}
+
+.cell {
+  position: relative;
+  overflow: visible;
+}
+
+.cell:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.cell-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cell-button {
+  border: none;
+  background: none;
+  overflow: visible;
+}
+
+.cell-button:hover {
+  position: relative;
+  box-shadow: 0px 0px 20px var(--bs-teal);
+  z-index: 2;
+}
+
+tr:nth-child(even) td:nth-child(odd),
+tr:nth-child(odd) td:nth-child(even) {
+  background-color: var(--bs-gray-300);
+}
