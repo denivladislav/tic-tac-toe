@@ -15,14 +15,14 @@ const LoginForm = () => {
   const currentPlayer = players.length + 1;
 
   useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
-  useEffect(() => {
     if (players.length === MAX_NUMBER_OF_PLAYERS) {
       dispatch(setGameState('game'));
     }
   }, [players]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const loginSchema = Yup.object().shape({
     username: Yup.mixed()
@@ -45,34 +45,37 @@ const LoginForm = () => {
   const isUsernameValid = !(formik.touched.username && formik.errors.username);
 
   return (
-    <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
-      <Form.Group className="d-flex flex-column align-items-center">
-        <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
-        <Form.Control
-          onChange={formik.handleChange}
-          value={formik.values.username}
-          placeholder={t('login.username', { currentPlayer })}
-          name="username"
-          id="username"
-          autoComplete="Player"
-          ref={inputRef}
-          isInvalid={!isUsernameValid}
-        />
-        <Form.Control.Feedback className="text-center col" type="invalid">
-          {!isUsernameValid && t(`errors.${formik.errors.username}`)}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <div>
-        <Button
-          className="mt-2"
-          disabled={formik.isSubmitting}
-          type="submit"
-          variant="primary"
-        >
-          {t('login.submit')}
-        </Button>
-      </div>
-    </Form>
+    <>
+      <h3>{t('general.gameName')}</h3>
+      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
+        <Form.Group className="d-flex flex-column align-items-center">
+          <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
+          <Form.Control
+            onChange={formik.handleChange}
+            value={formik.values.username}
+            placeholder={t('login.username', { currentPlayer })}
+            name="username"
+            id="username"
+            autoComplete="Player"
+            ref={inputRef}
+            isInvalid={!isUsernameValid}
+          />
+          <Form.Control.Feedback className="text-center col" type="invalid">
+            {!isUsernameValid && t(`errors.${formik.errors.username}`)}
+          </Form.Control.Feedback>
+        </Form.Group>
+        <div>
+          <Button
+            className="mt-2"
+            disabled={formik.isSubmitting}
+            type="submit"
+            variant="primary"
+          >
+            {t('login.submit')}
+          </Button>
+        </div>
+      </Form>
+    </>
   );
 };
 

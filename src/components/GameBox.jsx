@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Table } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { MAX_WIDTH_OF_GAME_FIELD } from '../const.js';
-import { occupyCell, changePlayer } from '../slices/gameDataSlice.js';
+import { occupyCell, changePlayer, setGameState } from '../slices/gameDataSlice.js';
+import { checkGameResult } from '../utils/utils.js';
 
 import '../assets/css/style.css';
 import cross from '../assets/images/cross.png';
@@ -14,20 +15,20 @@ const cellPrefix = 'col';
 
 const cellContentSharedClasses = 'w-100 h-100';
 
-const Cell = ({ cellId }) => {
+const Cell = ({ cellId, coords }) => {
   const dispatch = useDispatch();
-
-  const occupiedCells = useSelector((state) => state.gameData.occupiedCells);
-  const currentCell = occupiedCells.find((occupiedCell) => occupiedCell.cellId === cellId);
-  const isCellOccupied = Boolean(currentCell);
-
+  const gameField = useSelector((state) => state.gameData.gameField);
   const currentPlayerIndex = useSelector((state) => state.gameData.currentPlayerIndex);
+
+  const { row, col } = coords;
+  const currentCell = gameField[row][col];
+  const isCellOccupied = currentCell.occupiedByPlayer !== null;
 
   const handleClick = () => {
     if (isCellOccupied) {
       return;
     }
-    dispatch(occupyCell({ cellId, currentPlayerIndex }));
+    dispatch(occupyCell({ coords, currentPlayerIndex }));
     dispatch(changePlayer());
   };
 
@@ -38,7 +39,7 @@ const Cell = ({ cellId }) => {
       );
     }
 
-    if (currentCell.currentPlayerIndex === 0) {
+    if (currentCell.occupiedByPlayer === 0) {
       return (
         <img className={cn(cellContentSharedClasses)} src={cross} alt="cross" />
       );
@@ -58,36 +59,57 @@ const Cell = ({ cellId }) => {
   );
 };
 
-const renderGameFieldRow = (rowId) => (
+const renderGameFieldRow = (row, rowIndex, rowId) => (
   <>
-    {[...Array(MAX_WIDTH_OF_GAME_FIELD).keys()].map((colId) => {
-      const cellId = `${rowId}-${cellPrefix}${colId}`;
-
-      return <Cell cellId={cellId} key={cellId} />;
+    {row.map((_, colIndex) => {
+      const cellId = `${rowId}-${cellPrefix}${colIndex}`;
+      const coords = { row: rowIndex, col: colIndex };
+      return <Cell cellId={cellId} coords={coords} key={cellId} />;
     })}
   </>
 );
 
-const GameField = () => (
-  <Table bordered size="sm">
-    <tbody>
-      {[...Array(MAX_WIDTH_OF_GAME_FIELD).keys()].map((key) => {
-        const rowId = `${rowPrefix}${key}`;
+const GameField = () => {
+  const gameField = useSelector((state) => state.gameData.gameField);
 
-        return (
-          <tr id={rowId} key={rowId}>
-            {renderGameFieldRow(rowId)}
-          </tr>
-        );
-      })}
-    </tbody>
-  </Table>
-);
+  return (
+    <Table bordered size="sm">
+      <tbody>
+        {gameField.map((row, rowIndex) => {
+          const rowId = `${rowPrefix}${rowIndex}`;
 
-const GameBox = () => (
-  <Container className="game-field-container">
-    <GameField />
-  </Container>
-);
+          return (
+            <tr id={rowId} key={rowId}>
+              {renderGameFieldRow(row, rowIndex, rowId)}
+            </tr>
+          );
+        })}
+      </tbody>
+    </Table>
+  );
+};
+
+const GameBox = () => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const currentPlayerIndex = useSelector((state) => state.gameData.currentPlayerIndex);
+  const gameField = useSelector((state) => state.gameData.gameField);
+  const moves = useSelector((state) => state.gameData.moves);
+  const lastMove = moves[moves.length - 1];
+
+  useEffect(() => {
+    const hasGameEnded = checkGameResult(lastMove, gameField);
+    if (hasGameEnded) {
+      dispatch(setGameState('gameEnd'));
+    }
+  }, [currentPlayerIndex]);
+
+  return (
+    // <h3>{t('current')}</h3>
+    <Container className="game-field-container">
+      <GameField />
+    </Container>
+  );
+};
 
 export default GameBox;

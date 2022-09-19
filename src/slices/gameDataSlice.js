@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { generateGameField } from '../utils/utils.js';
 
 const initialState = {
   gameState: 'login',
   players: [],
   currentPlayerIndex: 0,
-  occupiedCells: [],
+  gameField: generateGameField(),
+  moves: [],
 };
 
 const gameDataSlice = createSlice({
@@ -18,8 +20,14 @@ const gameDataSlice = createSlice({
       state.players = [...state.players, payload];
     },
     occupyCell: (state, { payload }) => {
-      console.log('payload', payload);
-      state.occupiedCells = [...state.occupiedCells, payload];
+      const { coords, currentPlayerIndex } = payload;
+      const { row, col } = coords;
+
+      const currentCell = state.gameField[row][col];
+      currentCell.occupiedByPlayer = currentPlayerIndex;
+
+      const move = { coords, playerIndex: currentPlayerIndex };
+      state.moves = [...state.moves, move];
     },
     changePlayer: (state) => {
       if (state.currentPlayerIndex === 0) {
