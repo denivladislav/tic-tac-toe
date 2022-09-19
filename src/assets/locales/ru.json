@@ -3,9 +3,9 @@
     "gameName": "Крестики-нолики"
   },
   "login": {
-    "enterUsername": "Игрок {{ currentPlayerIndex }} – как тебя зовут?",
+    "enterUsername": "Игрок {{ currentPlayer }} – как тебя зовут?",
     "submit": "ОК",
-    "username": "Игрок {{ currentPlayerIndex }}"
+    "username": "Игрок {{ currentPlayer }}"
   },
   "errors": {
     "required": "Обязательное поле",

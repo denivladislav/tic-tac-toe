@@ -12,7 +12,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const players = useSelector((state) => state.gameData.players);
-  const currentPlayerIndex = players.length + 1;
+  const currentPlayer = players.length + 1;
 
   useEffect(() => {
     inputRef.current.focus();
@@ -47,11 +47,11 @@ const LoginForm = () => {
   return (
     <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
       <Form.Group className="d-flex flex-column align-items-center">
-        <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayerIndex })}</Form.Label>
+        <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
         <Form.Control
           onChange={formik.handleChange}
           value={formik.values.username}
-          placeholder={t('login.username', { currentPlayerIndex })}
+          placeholder={t('login.username', { currentPlayer })}
           name="username"
           id="username"
           autoComplete="Player"
