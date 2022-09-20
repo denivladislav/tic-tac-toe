@@ -7,6 +7,9 @@
     "submit": "ОК",
     "username": "Игрок {{ currentPlayer }}"
   },
+  "game": {
+    "playerTurn": "Ход игрока:"
+  },
   "errors": {
     "required": "Обязательное поле",
     "duplicatedUsername": "Игрок с таким именем уже существует"

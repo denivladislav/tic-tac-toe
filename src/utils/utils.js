@@ -13,7 +13,8 @@ export const generateGameField = () => {
   return field;
 };
 
-export const checkGameResult = (lastMove, gameField) => {
+export const checkGameResult = (moves, gameField) => {
+  const lastMove = moves[moves.length - 1];
   if (!lastMove) {
     return;
   }
@@ -64,7 +65,10 @@ export const checkGameResult = (lastMove, gameField) => {
     return isRightDiagWin;
   };
 
-  if (checkIsRowWin() || checkIsColWin() || checkIsLeftDiagWin() || checkIsRightDiagWin()) {
+  const checkIsDraw = () => moves.length === MAX_WIDTH_OF_GAME_FIELD ** 2;
+
+  if (checkIsRowWin() || checkIsColWin() || checkIsLeftDiagWin()
+    || checkIsRightDiagWin() || checkIsDraw()) {
     return true;
   }
 };

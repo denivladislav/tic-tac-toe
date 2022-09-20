@@ -28,6 +28,21 @@
 
 .cell-button:hover {
   position: relative;
-  box-shadow: 0px 0px 20px var(--bs-teal);
   z-index: 2;
+}
+
+.cell-button-red:hover {
+  box-shadow: 0px 0px 20px var(--bs-red);
+}
+
+.cell-button-blue:hover {
+  box-shadow: 0px 0px 20px var(--bs-blue);
+}
+
+.text-red {
+  color: var(--bs-red);
+}
+
+.text-blue {
+  color: var(--bs-blue);
 }

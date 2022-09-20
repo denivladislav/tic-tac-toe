@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (players.length === MAX_NUMBER_OF_PLAYERS) {
-      dispatch(setGameState('game'));
+      dispatch(setGameState('gameRunning'));
     }
   }, [players]);
 

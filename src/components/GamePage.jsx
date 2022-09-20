@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import LoginForm from './LoginForm.jsx';
-import GameBox from './GameBox.jsx';
+import GameBox from './gameBox/GameBox.jsx';
 
 const renderContent = () => {
   const gameState = useSelector((state) => state.gameData.gameState);
@@ -10,10 +10,10 @@ const renderContent = () => {
   switch (gameState) {
     case 'login':
       return <LoginForm />;
-    case 'game':
+    case 'gameRunning':
       return <GameBox />;
-    case 'gameEnd':
-      return <div>End!</div>;
+    case 'gameOver':
+      return <div>Game Over!</div>;
     default:
       throw new Error(`Unknown gameState: ${gameState}`);
   }
