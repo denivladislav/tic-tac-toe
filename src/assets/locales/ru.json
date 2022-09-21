@@ -8,7 +8,15 @@
     "username": "Игрок {{ currentPlayer }}"
   },
   "game": {
-    "playerTurn": "Ход игрока:"
+    "playerTurn": "Ход игрока:",
+    "gameOver": "Игра окончена!",
+    "win": "Победитель: {{ player }}.",
+    "draw": "Ничья.",
+    "restart": "Новая игра",
+    "leave": "Покинуть игру",
+    "confirmLeave": "Покинуть игру?",
+    "confirm": "Да",
+    "cancel": "Нет"
   },
   "errors": {
     "required": "Обязательное поле",

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { setGameState, addPlayer } from '../slices/gameDataSlice';
+import { addPlayer } from '../slices/gameDataSlice';
+import { setGameState } from '../slices/gameStateSlice';
 import { MAX_NUMBER_OF_PLAYERS } from '../const';
 
 const LoginForm = () => {
@@ -46,7 +47,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <h3>{t('general.gameName')}</h3>
+      <h3 className="mb-3">{t('general.gameName')}</h3>
       <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
         <Form.Group className="d-flex flex-column align-items-center">
           <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>

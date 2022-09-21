@@ -13,11 +13,12 @@ export const generateGameField = () => {
   return field;
 };
 
-export const checkGameResult = (moves, gameField) => {
+export const getGameResult = (moves, gameField) => {
   const lastMove = moves[moves.length - 1];
   if (!lastMove) {
-    return;
+    return { result: 'continue', playerIndex: null };
   }
+
   const { coords: { row, col }, playerIndex } = lastMove;
 
   const checkIsRowWin = () => {
@@ -68,7 +69,13 @@ export const checkGameResult = (moves, gameField) => {
   const checkIsDraw = () => moves.length === MAX_WIDTH_OF_GAME_FIELD ** 2;
 
   if (checkIsRowWin() || checkIsColWin() || checkIsLeftDiagWin()
-    || checkIsRightDiagWin() || checkIsDraw()) {
-    return true;
+    || checkIsRightDiagWin()) {
+    return { result: 'win', playerIndex };
   }
+
+  if (checkIsDraw()) {
+    return { result: 'draw', playerIndex: null };
+  }
+
+  return { result: 'continue', playerIndex: null };
 };

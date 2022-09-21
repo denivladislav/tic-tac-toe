@@ -2,20 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { generateGameField } from '../utils/utils.js';
 
 const initialState = {
-  gameState: 'login',
   players: [],
   currentPlayerIndex: 0,
   gameField: generateGameField(),
   moves: [],
+  gameResult: { result: null, playerIndex: null },
 };
 
 const gameDataSlice = createSlice({
   name: 'gameData',
   initialState,
   reducers: {
-    setGameState: (state, { payload }) => {
-      state.gameState = payload;
-    },
     addPlayer: (state, { payload }) => {
       state.players = [...state.players, payload];
     },
@@ -29,18 +26,27 @@ const gameDataSlice = createSlice({
       const move = { coords, playerIndex: currentPlayerIndex };
       state.moves = [...state.moves, move];
     },
-    changePlayer: (state) => {
+    swapPlayers: (state) => {
       if (state.currentPlayerIndex === 0) {
         state.currentPlayerIndex = 1;
       } else {
         state.currentPlayerIndex = 0;
       }
     },
+    addResult: (state, { payload }) => {
+      state.gameResult = payload;
+    },
+    restartGame: (state) => ({
+      ...initialState,
+      players: state.players,
+      currentPlayerIndex: state.currentPlayerIndex,
+    }),
+    leaveGame: () => ({ ...initialState }),
   },
 });
 
 export const {
-  setGameState, addPlayer, occupyCell, changePlayer,
+  addPlayer, occupyCell, swapPlayers, addResult, restartGame, leaveGame,
 } = gameDataSlice.actions;
 
 export default gameDataSlice.reducer;
