@@ -1,11 +1,6 @@
-.game-field-container {
-  max-width: 600px !important;
-}
-
 .cell {
   position: relative;
   overflow: visible;
-  /* border-width: 2px 2px !important; */
 }
 
 .cell:after {
@@ -68,4 +63,10 @@
   padding: 10px;
   width: 50px;
   height: 50px;
+}
+
+@media (min-width: 768px) {
+  .game-page-container {
+    max-width: 75vh;
+  }
 }

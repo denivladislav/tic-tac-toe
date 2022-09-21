@@ -12,11 +12,11 @@ const GameInfoPanel = () => {
   const { color } = PLAYER_STYLE_MAP[currentPlayerIndex];
 
   return (
-    <h3>
+    <h2>
       {t('game.playerTurn')}
       {' '}
       <span className={`text-${color}`}>{players[currentPlayerIndex]}</span>
-    </h3>
+    </h2>
   );
 };
 

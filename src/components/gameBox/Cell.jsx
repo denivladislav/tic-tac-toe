@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
 import { occupyCell, swapPlayers } from '../../slices/gameDataSlice.js';
 
-import '../../assets/css/style.css';
 import PLAYER_STYLE_MAP from './const.js';
 
 const Cell = ({ cellId, coords }) => {

@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { Table, Container } from 'react-bootstrap';
 import Cell from './Cell.jsx';
 
-import '../../assets/css/style.css';
-
 const ROW_PREFIX = 'row';
 const CELL_PREFIX = 'col';
 
@@ -22,7 +20,7 @@ const GameField = () => {
   );
 
   return (
-    <Container className="game-field-container">
+    <Container>
       <Table bordered size="sm">
         <tbody>
           {gameField.map((row, rowIndex) => {

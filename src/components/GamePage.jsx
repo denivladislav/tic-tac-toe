@@ -19,7 +19,7 @@ const GamePage = () => {
   };
 
   return (
-    <Container className="h-100 d-flex flex-column justify-content-center align-items-center">
+    <Container className="h-100 game-page-container d-flex flex-column justify-content-center align-items-center">
       {renderContent(gameState)}
     </Container>
   );

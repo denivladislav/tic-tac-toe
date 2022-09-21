@@ -7,6 +7,7 @@ import App from './components/App.jsx';
 import translationRU from './assets/locales/ru.json';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/css/style.css';
 
 export default async () => {
   const i18nInstance = i18n.createInstance();

@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <h3 className="mb-3">{t('general.gameName')}</h3>
+      <h1 className="mb-3">{t('general.gameName')}</h1>
       <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
         <Form.Group className="d-flex flex-column align-items-center">
           <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
