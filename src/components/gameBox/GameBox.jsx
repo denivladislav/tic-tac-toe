@@ -1,30 +1,35 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container } from 'react-bootstrap';
-import { setGameState } from '../../slices/gameDataSlice.js';
-import { checkGameResult } from '../../utils/utils.js';
-import GameHeader from './GameHeader.jsx';
+import { getGameResult } from '../../utils/utils';
+import { openModal } from '../../slices/modalSlice';
+import { addResult } from '../../slices/gameDataSlice';
+import GameInfoPanel from './GameInfoPanel.jsx';
+import LeaveGameButton from './LeaveGameButton.jsx';
 import GameField from './GameField.jsx';
+import GameModal from './GameModal.jsx';
 
 const GameBox = () => {
   const dispatch = useDispatch();
-  const currentPlayerIndex = useSelector((state) => state.gameData.currentPlayerIndex);
   const gameField = useSelector((state) => state.gameData.gameField);
   const moves = useSelector((state) => state.gameData.moves);
 
   useEffect(() => {
-    const hasGameEnded = checkGameResult(moves, gameField);
+    const gameResult = getGameResult(moves, gameField);
+    const { result } = gameResult;
+    const hasGameEnded = result === 'win' || result === 'draw';
     if (hasGameEnded) {
-      dispatch(setGameState('gameOver'));
+      dispatch(addResult(gameResult));
+      dispatch(openModal('gameOver'));
     }
-  }, [currentPlayerIndex]);
+  }, [moves]);
 
   return (
     <>
-      <GameHeader />
-      <Container className="game-field-container">
-        <GameField />
-      </Container>
+      <LeaveGameButton />
+      <GameInfoPanel />
+      <GameField />
+
+      <GameModal />
     </>
   );
 };

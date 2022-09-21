@@ -5,6 +5,7 @@
 .cell {
   position: relative;
   overflow: visible;
+  /* border-width: 2px 2px !important; */
 }
 
 .cell:after {
@@ -18,6 +19,13 @@
   width: 100%;
   height: 100%;
   overflow: visible;
+  display: flex;
+}
+
+.cell-content img {
+  flex-shrink: 0;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .cell-button {
@@ -45,4 +53,19 @@
 
 .text-blue {
   color: var(--bs-blue);
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.closeButton img {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
 }

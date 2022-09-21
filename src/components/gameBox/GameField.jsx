@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
 import Cell from './Cell.jsx';
 
 import '../../assets/css/style.css';
@@ -22,18 +22,20 @@ const GameField = () => {
   );
 
   return (
-    <Table bordered size="sm">
-      <tbody>
-        {gameField.map((row, rowIndex) => {
-          const rowId = `${ROW_PREFIX}${rowIndex}`;
-          return (
-            <tr id={rowId} key={rowId}>
-              {renderGameFieldRow(row, rowIndex, rowId)}
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+    <Container className="game-field-container">
+      <Table bordered size="sm">
+        <tbody>
+          {gameField.map((row, rowIndex) => {
+            const rowId = `${ROW_PREFIX}${rowIndex}`;
+            return (
+              <tr id={rowId} key={rowId}>
+                {renderGameFieldRow(row, rowIndex, rowId)}
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </Container>
   );
 };
 
