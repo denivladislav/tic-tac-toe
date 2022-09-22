@@ -26,8 +26,10 @@ const LoginForm = () => {
   }, []);
 
   const loginSchema = Yup.object().shape({
-    username: Yup.mixed()
+    username: Yup.string()
       .required('required')
+      .min(3, 'tooShortUsername')
+      .max(12, 'tooLongUsername')
       .notOneOf(players, 'duplicatedUsername'),
   });
 

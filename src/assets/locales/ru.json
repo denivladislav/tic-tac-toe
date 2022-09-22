@@ -20,6 +20,8 @@
   },
   "errors": {
     "required": "Обязательное поле",
-    "duplicatedUsername": "Игрок с таким именем уже существует"
+    "duplicatedUsername": "Игрок с таким именем уже существует",
+    "tooShortUsername": "Слишком короткое имя",
+    "tooLongUsername": "Слишком длинное имя"
   }
 }
