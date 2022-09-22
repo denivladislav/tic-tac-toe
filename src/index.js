@@ -1,9 +1,10 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import init from './init.jsx';
 
 const render = async () => {
   const vdom = await init();
-  ReactDOM.render(vdom, document.querySelector('#root'));
+  const root = createRoot(document.querySelector('#root'));
+  root.render(vdom);
 };
 
 render();
