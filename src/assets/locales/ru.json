@@ -2,6 +2,10 @@
   "general": {
     "gameName": "Крестики-нолики"
   },
+  "lng": {
+    "ru": "RU",
+    "en": "EN"
+  },
   "login": {
     "enterUsername": "Игрок {{ currentPlayer }}, как тебя зовут?",
     "submit": "ОК",

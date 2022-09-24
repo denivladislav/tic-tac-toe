@@ -4,6 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import store from './slices/index.js';
 import translationRU from './assets/locales/ru.json';
+import translationEN from './assets/locales/en.json';
 import App from './components/App.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +18,9 @@ export default async () => {
     resources: {
       ru: {
         translation: translationRU,
+      },
+      en: {
+        translation: translationEN,
       },
     },
   });

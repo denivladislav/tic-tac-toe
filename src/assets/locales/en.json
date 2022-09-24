@@ -1,0 +1,31 @@
+{
+  "general": {
+    "gameName": "Tic-tac-toe"
+  },
+  "lng": {
+    "ru": "RU",
+    "en": "EN"
+  },
+  "login": {
+    "enterUsername": "Player {{ currentPlayer }}, what is your name?",
+    "submit": "ОК",
+    "username": "Player {{ currentPlayer }}"
+  },
+  "game": {
+    "playerTurn": "Turn:",
+    "gameOver": "Game over!",
+    "win": "Winner: {{ player }}.",
+    "draw": "Draw.",
+    "restart": "New game",
+    "leave": "Leave game",
+    "confirmLeave": "Leave game?",
+    "confirm": "Yes",
+    "cancel": "No"
+  },
+  "errors": {
+    "required": "Required field",
+    "duplicatedUsername": "This username already exists",
+    "tooShortUsername": "Too short",
+    "tooLongUsername": "Too long"
+  }
+}

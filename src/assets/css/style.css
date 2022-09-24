@@ -1,3 +1,9 @@
+.switchLanguageButtonGroup {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .cell {
   position: relative;
   overflow: visible;

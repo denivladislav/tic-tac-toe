@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import LoginForm from './LoginForm.jsx';
 import GameBox from './GameBox/GameBox.jsx';
+import SwitchLanguageButtons from './buttons/SwitchLangageButton.jsx';
 
 const GamePage = () => {
   const gameState = useSelector((state) => state.gameState.gameState);
@@ -20,6 +21,7 @@ const GamePage = () => {
 
   return (
     <Container className="h-100 game-page-container d-flex flex-column justify-content-center align-items-center">
+      <SwitchLanguageButtons />
       {renderContent(gameState)}
     </Container>
   );
