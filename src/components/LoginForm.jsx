@@ -50,7 +50,7 @@ const LoginForm = () => {
   return (
     <>
       <h1 className="mb-3">{t('general.gameName')}</h1>
-      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center" data-testid="loginForm">
+      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center" data-testid="loginForm" aria-label="login form">
         <Form.Group className="d-flex flex-column align-items-center">
           <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
           <Form.Control
@@ -62,8 +62,9 @@ const LoginForm = () => {
             ref={inputRef}
             isInvalid={!isUsernameValid}
             data-testid={`usernameInputPlayer${currentPlayer}`}
+            aria-label="enter username"
           />
-          <Form.Control.Feedback className="text-center col" type="invalid">
+          <Form.Control.Feedback className="text-center col" type="invalid" aria-label="input error">
             {!isUsernameValid && t(`errors.${formik.errors.username}`)}
           </Form.Control.Feedback>
         </Form.Group>
@@ -74,6 +75,7 @@ const LoginForm = () => {
             type="submit"
             variant="primary"
             data-testid="submitUsername"
+            aria-label="submit username"
           >
             {t('login.submit')}
           </Button>

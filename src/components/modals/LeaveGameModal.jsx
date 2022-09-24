@@ -30,10 +30,10 @@ const LeaveGameModal = () => {
 
   const renderBody = () => (
     <Col className="text-center">
-      <Button className="mx-2" variant="danger" onClick={handleClickConfirm}>
+      <Button className="mx-2" variant="danger" onClick={handleClickConfirm} aria-label="confirm leave game">
         {t('game.confirm')}
       </Button>
-      <Button className="mx-2" variant="primary" onClick={handleClickCancel}>
+      <Button className="mx-2" variant="primary" onClick={handleClickCancel} aria-label="cancel leave game">
         {t('game.cancel')}
       </Button>
     </Col>

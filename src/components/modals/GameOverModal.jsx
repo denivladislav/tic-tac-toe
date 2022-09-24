@@ -36,7 +36,9 @@ const GameOverModal = () => {
 
     return (
       <Modal.Title>
-        <Row className="justify-content-center">{t('game.gameOver')}</Row>
+        <Row className="justify-content-center">
+          {t('game.gameOver')}
+        </Row>
         <Row className="justify-content-center">
           {message}
         </Row>
@@ -46,10 +48,10 @@ const GameOverModal = () => {
 
   const renderBody = () => (
     <Col className="text-center">
-      <Button className="mx-2" variant="danger" onClick={handleClickLeave}>
+      <Button className="mx-2" variant="danger" onClick={handleClickLeave} aria-label="leave game">
         {t('game.leave')}
       </Button>
-      <Button className="mx-2" variant="primary" onClick={handleClickRestart}>
+      <Button className="mx-2" variant="primary" onClick={handleClickRestart} aria-label="restart game">
         {t('game.restart')}
       </Button>
     </Col>
