@@ -3,7 +3,7 @@
     "gameName": "Крестики-нолики"
   },
   "login": {
-    "enterUsername": "Игрок {{ currentPlayer }} – как тебя зовут?",
+    "enterUsername": "Игрок {{ currentPlayer }}, как тебя зовут?",
     "submit": "ОК",
     "username": "Игрок {{ currentPlayer }}"
   },

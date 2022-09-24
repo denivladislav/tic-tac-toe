@@ -75,8 +75,8 @@ describe('game', () => {
       },
     );
 
-    const leaveButton = await screen.getByTestId('leaveButton');
-    fireEvent.click(leaveButton);
+    const closeButton = await screen.getByTestId('closeButton');
+    fireEvent.click(closeButton);
 
     const confirmLeave = await screen.findByText(i18n.t('game.confirmLeave'));
     expect(confirmLeave).toBeInTheDocument();

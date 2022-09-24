@@ -12,7 +12,7 @@ const LeaveGameButton = () => {
   };
 
   return (
-    <button type="button" className="closeButton" aria-label="Close" onClick={handleCloseClick} data-testid="leaveButton">
+    <button type="button" className="closeButton" aria-label="Close" onClick={handleCloseClick} data-testid="closeButton">
       <img src={close} alt="close" />
     </button>
   );
