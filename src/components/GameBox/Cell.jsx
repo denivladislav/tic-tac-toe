@@ -26,7 +26,7 @@ const Cell = ({ cellId, coords }) => {
     if (!isCellOccupied) {
       const { color } = PLAYER_STYLE_MAP[currentPlayerIndex];
       return (
-        <button className={cn('w-100', 'h-100', 'cell-button', `cell-button-${color}`)} type="button" aria-label="cell" onClick={handleClick} />
+        <button className={cn('w-100', 'h-100', 'cell-button', `cell-button-${color}`)} data-testid={cellId} type="button" aria-label="cell" onClick={handleClick} />
       );
     }
     const { img, alt } = PLAYER_STYLE_MAP[currentCell.occupiedByPlayer];

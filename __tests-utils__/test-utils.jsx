@@ -4,6 +4,18 @@ import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18next-tests.js';
 import { setupStore } from '../src/slices/index.js';
+import { generateGameField } from '../src/utils/utils.js';
+
+export const getField = (moves) => {
+  const field = generateGameField();
+  moves.forEach(
+    ({ coords, playerIndex }) => {
+      const { row, col } = coords;
+      field[row][col].occupiedByPlayer = playerIndex;
+    },
+  );
+  return field;
+};
 
 const renderWithProviders = (
   component,

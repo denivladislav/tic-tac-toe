@@ -28,7 +28,7 @@ describe('login', () => {
     await waitFor(() => expect(usernameInputPlayer2.value).toBe(''));
   });
 
-  test('incorrect username errors', async () => {
+  test('input errors', async () => {
     const { unmount } = renderWithProviders(<LoginForm />);
     // test required error
     const usernameInputPlayer1 = await screen.findByTestId('usernameInputPlayer1');

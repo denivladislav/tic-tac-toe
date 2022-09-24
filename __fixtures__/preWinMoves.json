@@ -1,0 +1,32 @@
+{
+  "moves": [
+    {
+      "coords": {
+        "row": 0,
+        "col": 0
+      },
+      "playerIndex": 0
+    },
+    {
+      "coords": {
+        "row": 1,
+        "col": 0
+      },
+      "playerIndex": 1
+    },
+    {
+      "coords": {
+        "row": 0,
+        "col": 1
+      },
+      "playerIndex": 0
+    },
+    {
+      "coords": {
+        "row": 1,
+        "col": 1
+      },
+      "playerIndex": 1
+    }
+  ]
+}
