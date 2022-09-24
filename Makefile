@@ -9,3 +9,9 @@ develop:
 
 build:
 	npm run build
+
+test:
+	npm test
+
+testcoverage:
+	npm run test:coverage

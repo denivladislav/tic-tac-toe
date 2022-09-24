@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateGameField } from '../utils/utils.js';
 
-const initialState = {
+export const initialState = {
   players: [],
   currentPlayerIndex: 0,
   gameField: generateGameField(),

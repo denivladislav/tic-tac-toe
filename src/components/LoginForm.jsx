@@ -38,9 +38,9 @@ const LoginForm = () => {
       username: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (({ username }) => {
+    onSubmit: (({ username }, { resetForm }) => {
       dispatch(addPlayer(username));
-      formik.resetForm();
+      resetForm();
       inputRef.current.focus();
     }),
   });
@@ -50,7 +50,7 @@ const LoginForm = () => {
   return (
     <>
       <h1 className="mb-3">{t('general.gameName')}</h1>
-      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center">
+      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center" data-testid="loginForm">
         <Form.Group className="d-flex flex-column align-items-center">
           <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
           <Form.Control
@@ -59,9 +59,9 @@ const LoginForm = () => {
             placeholder={t('login.username', { currentPlayer })}
             name="username"
             id="username"
-            autoComplete="Player"
             ref={inputRef}
             isInvalid={!isUsernameValid}
+            data-testid={`usernameInputPlayer${currentPlayer}`}
           />
           <Form.Control.Feedback className="text-center col" type="invalid">
             {!isUsernameValid && t(`errors.${formik.errors.username}`)}
@@ -73,6 +73,7 @@ const LoginForm = () => {
             disabled={formik.isSubmitting}
             type="submit"
             variant="primary"
+            data-testid="submitUsername"
           >
             {t('login.submit')}
           </Button>

@@ -3,8 +3,8 @@ import i18n from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import store from './slices/index.js';
-import App from './components/App.jsx';
 import translationRU from './assets/locales/ru.json';
+import App from './components/App.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css';
