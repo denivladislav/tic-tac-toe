@@ -7,7 +7,9 @@ import PLAYER_STYLE_MAP from './const.js';
 const GameInfoPanel = () => {
   const { t } = useTranslation();
   const players = useSelector((state) => state.gameData.players);
-  const currentPlayerIndex = useSelector((state) => state.gameData.currentPlayerIndex);
+  const currentPlayerIndex = useSelector(
+    (state) => state.gameData.currentPlayerIndex,
+  );
 
   const { color } = PLAYER_STYLE_MAP[currentPlayerIndex];
 

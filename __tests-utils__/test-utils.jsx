@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -8,12 +9,10 @@ import { generateGameField } from '../src/utils/utils.js';
 
 export const getField = (moves) => {
   const field = generateGameField();
-  moves.forEach(
-    ({ coords, playerIndex }) => {
-      const { row, col } = coords;
-      field[row][col].occupiedByPlayer = playerIndex;
-    },
-  );
+  moves.forEach(({ coords, playerIndex }) => {
+    const { row, col } = coords;
+    field[row][col].occupiedByPlayer = playerIndex;
+  });
   return field;
 };
 
@@ -28,14 +27,15 @@ const renderWithProviders = (
   function Wrapper({ children }) {
     return (
       <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          {children}
-        </Provider>
+        <Provider store={store}>{children}</Provider>
       </I18nextProvider>
     );
   }
 
-  return { store, ...render(component, { wrapper: Wrapper, ...renderOptions }) };
+  return {
+    store,
+    ...render(component, { wrapper: Wrapper, ...renderOptions }),
+  };
 };
 
 export default renderWithProviders;

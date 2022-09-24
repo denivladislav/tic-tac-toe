@@ -38,11 +38,11 @@ const LoginForm = () => {
       username: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (({ username }, { resetForm }) => {
+    onSubmit: ({ username }, { resetForm }) => {
       dispatch(addPlayer(username));
       resetForm();
       inputRef.current.focus();
-    }),
+    },
   });
 
   const isUsernameValid = !(formik.touched.username && formik.errors.username);
@@ -50,9 +50,16 @@ const LoginForm = () => {
   return (
     <>
       <h1 className="mb-3">{t('general.gameName')}</h1>
-      <Form onSubmit={formik.handleSubmit} className="d-flex flex-column align-items-center" data-testid="loginForm" aria-label="login form">
+      <Form
+        onSubmit={formik.handleSubmit}
+        className="d-flex flex-column align-items-center"
+        data-testid="loginForm"
+        aria-label="login form"
+      >
         <Form.Group className="d-flex flex-column align-items-center">
-          <Form.Label htmlFor="username">{t('login.enterUsername', { currentPlayer })}</Form.Label>
+          <Form.Label htmlFor="username">
+            {t('login.enterUsername', { currentPlayer })}
+          </Form.Label>
           <Form.Control
             onChange={formik.handleChange}
             value={formik.values.username}
@@ -64,7 +71,11 @@ const LoginForm = () => {
             data-testid={`usernameInputPlayer${currentPlayer}`}
             aria-label="enter username"
           />
-          <Form.Control.Feedback className="text-center col" type="invalid" aria-label="input error">
+          <Form.Control.Feedback
+            className="text-center col"
+            type="invalid"
+            aria-label="input error"
+          >
             {!isUsernameValid && t(`errors.${formik.errors.username}`)}
           </Form.Control.Feedback>
         </Form.Group>

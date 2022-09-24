@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Modal, Col, Button,
-} from 'react-bootstrap';
+import { Modal, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../slices/modalSlice';
@@ -23,17 +21,25 @@ const LeaveGameModal = () => {
   };
 
   const renderHeader = () => (
-    <Modal.Title>
-      {t('game.confirmLeave')}
-    </Modal.Title>
+    <Modal.Title>{t('game.confirmLeave')}</Modal.Title>
   );
 
   const renderBody = () => (
     <Col className="text-center">
-      <Button className="mx-2" variant="danger" onClick={handleClickConfirm} aria-label="confirm leave game">
+      <Button
+        className="mx-2"
+        variant="danger"
+        onClick={handleClickConfirm}
+        aria-label="confirm leave game"
+      >
         {t('game.confirm')}
       </Button>
-      <Button className="mx-2" variant="primary" onClick={handleClickCancel} aria-label="cancel leave game">
+      <Button
+        className="mx-2"
+        variant="primary"
+        onClick={handleClickCancel}
+        aria-label="cancel leave game"
+      >
         {t('game.cancel')}
       </Button>
     </Col>
@@ -44,9 +50,7 @@ const LeaveGameModal = () => {
       <Modal.Header className="justify-content-center">
         {renderHeader()}
       </Modal.Header>
-      <Modal.Body>
-        {renderBody()}
-      </Modal.Body>
+      <Modal.Body>{renderBody()}</Modal.Body>
     </Modal>
   );
 };

@@ -11,9 +11,7 @@ const GameModal = () => {
 
   const Modal = getModal(modalType);
 
-  return (
-    <Modal />
-  );
+  return <Modal />;
 };
 
 export default GameModal;

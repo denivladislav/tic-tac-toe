@@ -12,7 +12,9 @@ const GameOverModal = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const players = useSelector((state) => state.gameData.players);
-  const { result, playerIndex } = useSelector((state) => state.gameData.gameResult);
+  const { result, playerIndex } = useSelector(
+    (state) => state.gameData.gameResult,
+  );
 
   const handleClickRestart = () => {
     dispatch(restartGame());
@@ -26,32 +28,36 @@ const GameOverModal = () => {
   };
 
   const renderHeader = () => {
-    const message = result === 'win'
-      ? (
-        <>
-          {t('game.win', { player: players[playerIndex] })}
-        </>
-      )
-      : (<>{t('game.draw')}</>);
+    const message = result === 'win' ? (
+      <>{t('game.win', { player: players[playerIndex] })}</>
+    ) : (
+      <>{t('game.draw')}</>
+    );
 
     return (
       <Modal.Title>
-        <Row className="justify-content-center">
-          {t('game.gameOver')}
-        </Row>
-        <Row className="justify-content-center">
-          {message}
-        </Row>
+        <Row className="justify-content-center">{t('game.gameOver')}</Row>
+        <Row className="justify-content-center">{message}</Row>
       </Modal.Title>
     );
   };
 
   const renderBody = () => (
     <Col className="text-center">
-      <Button className="mx-2" variant="danger" onClick={handleClickLeave} aria-label="leave game">
+      <Button
+        className="mx-2"
+        variant="danger"
+        onClick={handleClickLeave}
+        aria-label="leave game"
+      >
         {t('game.leave')}
       </Button>
-      <Button className="mx-2" variant="primary" onClick={handleClickRestart} aria-label="restart game">
+      <Button
+        className="mx-2"
+        variant="primary"
+        onClick={handleClickRestart}
+        aria-label="restart game"
+      >
         {t('game.restart')}
       </Button>
     </Col>
@@ -62,9 +68,7 @@ const GameOverModal = () => {
       <Modal.Header className="justify-content-center">
         {renderHeader()}
       </Modal.Header>
-      <Modal.Body>
-        {renderBody()}
-      </Modal.Body>
+      <Modal.Body>{renderBody()}</Modal.Body>
     </Modal>
   );
 };

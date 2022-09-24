@@ -8,7 +8,9 @@ import PLAYER_STYLE_MAP from './const.js';
 const Cell = ({ cellId, coords }) => {
   const dispatch = useDispatch();
   const gameField = useSelector((state) => state.gameData.gameField);
-  const currentPlayerIndex = useSelector((state) => state.gameData.currentPlayerIndex);
+  const currentPlayerIndex = useSelector(
+    (state) => state.gameData.currentPlayerIndex,
+  );
 
   const { row, col } = coords;
   const currentCell = gameField[row][col];
@@ -26,7 +28,18 @@ const Cell = ({ cellId, coords }) => {
     if (!isCellOccupied) {
       const { color } = PLAYER_STYLE_MAP[currentPlayerIndex];
       return (
-        <button className={cn('w-100', 'h-100', 'cell-button', `cell-button-${color}`)} data-testid={cellId} type="button" onClick={handleClick} aria-label="empty cell" />
+        <button
+          className={cn(
+            'w-100',
+            'h-100',
+            'cell-button',
+            `cell-button-${color}`,
+          )}
+          data-testid={cellId}
+          type="button"
+          onClick={handleClick}
+          aria-label="empty cell"
+        />
       );
     }
     const { img, alt } = PLAYER_STYLE_MAP[currentCell.occupiedByPlayer];
@@ -35,9 +48,7 @@ const Cell = ({ cellId, coords }) => {
 
   return (
     <td className="p-0 cell border-2" id={cellId}>
-      <div className="cell-content">
-        {renderCellContent()}
-      </div>
+      <div className="cell-content">{renderCellContent()}</div>
     </td>
   );
 };
