@@ -39,9 +39,6 @@ const gameDataSlice = createSlice({
     undoLastMove: (state) => {
       const { moves } = state;
       const lastMove = moves[moves.length - 1];
-      if (!lastMove) {
-        return;
-      }
       const {
         coords: { row, col },
         playerIndex,

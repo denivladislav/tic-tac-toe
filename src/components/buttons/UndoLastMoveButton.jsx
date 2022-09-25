@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { undoLastMove } from '../../slices/gameDataSlice.js';
@@ -7,6 +7,9 @@ import { undoLastMove } from '../../slices/gameDataSlice.js';
 const UndoLastMoveButton = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const moves = useSelector((state) => state.gameData.moves);
+
+  const isDisabled = moves.length === 0;
 
   const handleClick = () => {
     dispatch(undoLastMove());
@@ -19,6 +22,7 @@ const UndoLastMoveButton = () => {
       onClick={handleClick}
       aria-label="undo last turn"
       data-testid="undoLastTurnButton"
+      disabled={isDisabled}
     >
       {t('game.undoLastTurn')}
     </Button>

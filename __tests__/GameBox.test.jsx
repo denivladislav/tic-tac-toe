@@ -29,11 +29,13 @@ describe('game', () => {
         },
       },
     });
+    const undoLastTurnButton = await screen.findByTestId('undoLastTurnButton');
+    expect(undoLastTurnButton).toBeDisabled();
+
     await screen.getByText(PLAYERS[0]);
     await makeMove('row0-col2');
 
     await screen.getByText(PLAYERS[1]);
-    const undoLastTurnButton = await screen.findByTestId('undoLastTurnButton');
     fireEvent.click(undoLastTurnButton);
 
     await screen.getByText(PLAYERS[0]);
