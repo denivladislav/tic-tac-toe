@@ -14,17 +14,23 @@ export const generateGameField = () => {
 };
 
 export const getGameResult = (moves, gameField) => {
-  const lastMove = moves[moves.length - 1];
-  if (!lastMove) {
+  const minimumMovesToWin = 2 * MAX_WIDTH_OF_GAME_FIELD - 1;
+  if (moves.length < minimumMovesToWin) {
     return { result: 'continue', playerIndex: null };
   }
 
-  const { coords: { row, col }, playerIndex } = lastMove;
+  const lastMove = moves[moves.length - 1];
+  const {
+    coords: { row, col },
+    playerIndex,
+  } = lastMove;
 
   const checkIsRowWin = () => {
     const currentRow = gameField[row];
 
-    const isRowWin = !currentRow.find((cell) => cell.occupiedByPlayer !== playerIndex);
+    const isRowWin = !currentRow.find(
+      (cell) => cell.occupiedByPlayer !== playerIndex,
+    );
     return isRowWin;
   };
 
@@ -34,7 +40,9 @@ export const getGameResult = (moves, gameField) => {
       return acc;
     }, []);
 
-    const isColWin = !currentCol.find((cell) => cell.occupiedByPlayer !== playerIndex);
+    const isColWin = !currentCol.find(
+      (cell) => cell.occupiedByPlayer !== playerIndex,
+    );
     return isColWin;
   };
 
@@ -48,7 +56,9 @@ export const getGameResult = (moves, gameField) => {
       return acc;
     }, []);
 
-    const isleftDiagWin = !leftDiag.find((cell) => cell.occupiedByPlayer !== playerIndex);
+    const isleftDiagWin = !leftDiag.find(
+      (cell) => cell.occupiedByPlayer !== playerIndex,
+    );
     return isleftDiagWin;
   };
 
@@ -62,14 +72,20 @@ export const getGameResult = (moves, gameField) => {
       acc.push(r[righDiagCoordSum - rIndex]);
       return acc;
     }, []);
-    const isRightDiagWin = !rightDiag.find((cell) => cell.occupiedByPlayer !== playerIndex);
+    const isRightDiagWin = !rightDiag.find(
+      (cell) => cell.occupiedByPlayer !== playerIndex,
+    );
     return isRightDiagWin;
   };
 
   const checkIsDraw = () => moves.length === MAX_WIDTH_OF_GAME_FIELD ** 2;
 
-  if (checkIsRowWin() || checkIsColWin() || checkIsLeftDiagWin()
-    || checkIsRightDiagWin()) {
+  if (
+    checkIsRowWin()
+    || checkIsColWin()
+    || checkIsLeftDiagWin()
+    || checkIsRightDiagWin()
+  ) {
     return { result: 'win', playerIndex };
   }
 
