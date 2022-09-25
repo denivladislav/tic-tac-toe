@@ -20,6 +20,27 @@ describe('game', () => {
     fireEvent.click(cell);
   };
 
+  test('undo move', async () => {
+    renderWithProviders(<GameBox />, {
+      preloadedState: {
+        gameData: {
+          ...initialState,
+          players: PLAYERS,
+        },
+      },
+    });
+    await screen.getByText(PLAYERS[0]);
+    await makeMove('row0-col2');
+
+    await screen.getByText(PLAYERS[1]);
+    const undoLastTurnButton = await screen.findByTestId('undoLastTurnButton');
+    fireEvent.click(undoLastTurnButton);
+
+    await screen.getByText(PLAYERS[0]);
+    const cell = await screen.findByTestId('row0-col2');
+    expect(cell).toBeInTheDocument();
+  });
+
   test('win', async () => {
     renderWithProviders(<GameBox />, {
       preloadedState: {

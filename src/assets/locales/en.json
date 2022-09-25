@@ -20,7 +20,8 @@
     "leave": "Leave game",
     "confirmLeave": "Leave game?",
     "confirm": "Yes",
-    "cancel": "No"
+    "cancel": "No",
+    "undoLastTurn": "Undo last turn"
   },
   "errors": {
     "required": "Required field",

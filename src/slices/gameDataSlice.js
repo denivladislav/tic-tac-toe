@@ -36,6 +36,20 @@ const gameDataSlice = createSlice({
     addResult: (state, { payload }) => {
       state.gameResult = payload;
     },
+    undoLastMove: (state) => {
+      const { moves } = state;
+      const lastMove = moves[moves.length - 1];
+      if (!lastMove) {
+        return;
+      }
+      const {
+        coords: { row, col },
+        playerIndex,
+      } = lastMove;
+      state.gameField[row][col].occupiedByPlayer = null;
+      state.moves = state.moves.slice(0, moves.length - 1);
+      state.currentPlayerIndex = playerIndex;
+    },
     restartGame: (state) => ({
       ...initialState,
       players: state.players,
@@ -46,7 +60,13 @@ const gameDataSlice = createSlice({
 });
 
 export const {
-  addPlayer, occupyCell, swapPlayers, addResult, restartGame, leaveGame,
+  addPlayer,
+  occupyCell,
+  swapPlayers,
+  addResult,
+  restartGame,
+  leaveGame,
+  undoLastMove,
 } = gameDataSlice.actions;
 
 export default gameDataSlice.reducer;

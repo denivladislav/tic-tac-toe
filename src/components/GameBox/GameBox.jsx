@@ -7,6 +7,7 @@ import GameInfoPanel from './GameInfoPanel.jsx';
 import LeaveGameButton from '../buttons/LeaveGameButton.jsx';
 import GameField from './GameField.jsx';
 import GameModal from './GameModal.jsx';
+import UndoLastMoveButton from '../buttons/UndoLastMoveButton.jsx';
 
 const GameBox = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const GameBox = () => {
       <LeaveGameButton />
       <GameInfoPanel />
       <GameField />
+      <UndoLastMoveButton />
 
       <GameModal />
     </>

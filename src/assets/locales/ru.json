@@ -20,7 +20,8 @@
     "leave": "Покинуть игру",
     "confirmLeave": "Покинуть игру?",
     "confirm": "Да",
-    "cancel": "Нет"
+    "cancel": "Нет",
+    "undoLastTurn": "Отменить последний ход"
   },
   "errors": {
     "required": "Обязательное поле",
