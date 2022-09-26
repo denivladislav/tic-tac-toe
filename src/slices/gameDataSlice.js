@@ -4,7 +4,7 @@ import { generateGameField } from '../utils/utils.js';
 export const initialState = {
   players: [],
   currentPlayerIndex: 0,
-  gameField: generateGameField(),
+  gameField: [],
   moves: [],
   gameResult: { result: null, playerIndex: null },
 };
@@ -15,6 +15,9 @@ const gameDataSlice = createSlice({
   reducers: {
     addPlayer: (state, { payload }) => {
       state.players = [...state.players, payload];
+    },
+    pickGameFieldWidth: (state, { payload }) => {
+      state.gameField = generateGameField(payload);
     },
     occupyCell: (state, { payload }) => {
       const { coords, currentPlayerIndex } = payload;
@@ -47,11 +50,16 @@ const gameDataSlice = createSlice({
       state.moves = state.moves.slice(0, moves.length - 1);
       state.currentPlayerIndex = playerIndex;
     },
-    restartGame: (state) => ({
-      ...initialState,
-      players: state.players,
-      currentPlayerIndex: state.currentPlayerIndex,
-    }),
+    restartGame: (state) => {
+      const prevFirstPlayer = state.moves[0].playerIndex;
+      const newFirstPlayer = prevFirstPlayer === 0 ? 1 : 0;
+      return {
+        ...initialState,
+        players: state.players,
+        currentPlayerIndex: newFirstPlayer,
+        gameField: generateGameField(state.gameField.length),
+      };
+    },
     leaveGame: () => ({ ...initialState }),
   },
 });
@@ -64,6 +72,7 @@ export const {
   restartGame,
   leaveGame,
   undoLastMove,
+  pickGameFieldWidth,
 } = gameDataSlice.actions;
 
 export default gameDataSlice.reducer;

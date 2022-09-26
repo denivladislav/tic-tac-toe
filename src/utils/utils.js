@@ -1,10 +1,8 @@
-import { MAX_WIDTH_OF_GAME_FIELD } from '../const.js';
-
-export const generateGameField = () => {
+export const generateGameField = (gameFieldWidth) => {
   const field = [];
-  for (let i = 0; i < MAX_WIDTH_OF_GAME_FIELD; i += 1) {
+  for (let i = 0; i < gameFieldWidth; i += 1) {
     const row = [];
-    for (let j = 0; j < MAX_WIDTH_OF_GAME_FIELD; j += 1) {
+    for (let j = 0; j < gameFieldWidth; j += 1) {
       row.push({ occupiedByPlayer: null });
     }
     field.push(row);
@@ -14,7 +12,8 @@ export const generateGameField = () => {
 };
 
 export const getGameResult = (moves, gameField) => {
-  const minimumMovesToWin = 2 * MAX_WIDTH_OF_GAME_FIELD - 1;
+  const gameFieldLength = gameField.length;
+  const minimumMovesToWin = 2 * gameFieldLength - 1;
   if (moves.length < minimumMovesToWin) {
     return { result: 'continue', playerIndex: null };
   }
@@ -63,7 +62,7 @@ export const getGameResult = (moves, gameField) => {
   };
 
   const checkIsRightDiagWin = () => {
-    const righDiagCoordSum = MAX_WIDTH_OF_GAME_FIELD - 1;
+    const righDiagCoordSum = gameFieldLength - 1;
     if (row + col !== righDiagCoordSum) {
       return false;
     }
@@ -78,7 +77,7 @@ export const getGameResult = (moves, gameField) => {
     return isRightDiagWin;
   };
 
-  const checkIsDraw = () => moves.length === MAX_WIDTH_OF_GAME_FIELD ** 2;
+  const checkIsDraw = () => moves.length === gameFieldLength ** 2;
 
   if (
     checkIsRowWin()

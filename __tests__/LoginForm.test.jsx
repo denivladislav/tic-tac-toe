@@ -15,6 +15,7 @@ const TOO_LONG_USERNAME = '123456789101112';
 describe('login', () => {
   test('successful player login', async () => {
     renderWithProviders(<LoginForm />);
+
     const usernameInputPlayer1 = await screen.findByTestId(
       'usernameInputPlayer1',
     );
@@ -25,6 +26,8 @@ describe('login', () => {
 
     const submitUsername = await screen.findByTestId('submitUsername');
     fireEvent.click(submitUsername);
+
+    await waitFor(() => expect(submitUsername).toBeDisabled());
 
     const usernameInputPlayer2 = await screen.findByTestId(
       'usernameInputPlayer2',

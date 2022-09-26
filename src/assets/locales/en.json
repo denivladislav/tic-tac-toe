@@ -11,6 +11,12 @@
     "submit": "ОК",
     "username": "Player {{ currentPlayer }}"
   },
+  "pickGameFieldWidth": {
+    "pickGameFieldSize": "Pick game field size:",
+    "3": "3×3",
+    "4": "4×4",
+    "5": "5×5"
+  },
   "game": {
     "playerTurn": "Turn:",
     "gameOver": "Game over!",

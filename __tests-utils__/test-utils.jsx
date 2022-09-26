@@ -7,8 +7,8 @@ import i18n from './i18next-tests.js';
 import { setupStore } from '../src/slices/index.js';
 import { generateGameField } from '../src/utils/utils.js';
 
-export const getField = (moves) => {
-  const field = generateGameField();
+export const getField = (moves, width = 3) => {
+  const field = generateGameField(width);
   moves.forEach(({ coords, playerIndex }) => {
     const { row, col } = coords;
     field[row][col].occupiedByPlayer = playerIndex;

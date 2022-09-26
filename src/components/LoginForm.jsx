@@ -17,7 +17,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (players.length === MAX_NUMBER_OF_PLAYERS) {
-      dispatch(setGameState('gameRunning'));
+      dispatch(setGameState('pickGameFieldWidth'));
     }
   }, [players]);
 
@@ -79,18 +79,16 @@ const LoginForm = () => {
             {!isUsernameValid && t(`errors.${formik.errors.username}`)}
           </Form.Control.Feedback>
         </Form.Group>
-        <div>
-          <Button
-            className="mt-2"
-            disabled={formik.isSubmitting}
-            type="submit"
-            variant="primary"
-            data-testid="submitUsername"
-            aria-label="submit username"
-          >
-            {t('login.submit')}
-          </Button>
-        </div>
+        <Button
+          className="mt-2"
+          disabled={formik.isSubmitting}
+          type="submit"
+          variant="primary"
+          data-testid="submitUsername"
+          aria-label="submit username"
+        >
+          {t('login.submit')}
+        </Button>
       </Form>
     </>
   );

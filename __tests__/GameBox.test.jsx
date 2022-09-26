@@ -26,6 +26,8 @@ describe('game', () => {
         gameData: {
           ...initialState,
           players: PLAYERS,
+          gameField: getField([]),
+          moves: [],
         },
       },
     });
