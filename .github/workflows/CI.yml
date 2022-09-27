@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  - push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install
+        run: |
+          make install
+
+      - name: build
+        run: |
+          make build
+
+      - name: linter
+        run: |
+          make lint
