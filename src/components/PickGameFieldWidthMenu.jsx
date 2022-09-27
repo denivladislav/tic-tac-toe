@@ -10,7 +10,7 @@ const BUTTON_PREFIX = 'gameFieldWidth';
 
 const getWidth = (id) => Number(id.split('-')[1]);
 
-const PickGameFieldWidth = () => {
+const PickGameFieldWidthMenu = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isSubmitting, setSubmitting] = useState(false);
@@ -43,7 +43,7 @@ const PickGameFieldWidth = () => {
               aria-label={`pick game field with width ${width}`}
               onClick={handleClick}
             >
-              {t(`pickGameFieldWidth.${width}`)}
+              {t('pickGameFieldWidth.size', { width })}
             </Button>
           );
         })}
@@ -52,4 +52,4 @@ const PickGameFieldWidth = () => {
   );
 };
 
-export default PickGameFieldWidth;
+export default PickGameFieldWidthMenu;

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import LoginForm from './LoginForm.jsx';
 import GameBox from './GameBox/GameBox.jsx';
-import PickGameFieldWidth from './PickGameFieldWidth.jsx';
+import PickGameFieldWidthMenu from './PickGameFieldWidthMenu.jsx';
 import SwitchLanguageButtons from './buttons/SwitchLangageButton.jsx';
 
 const GamePage = () => {
@@ -14,7 +14,7 @@ const GamePage = () => {
       case 'login':
         return <LoginForm />;
       case 'pickGameFieldWidth':
-        return <PickGameFieldWidth />;
+        return <PickGameFieldWidthMenu />;
       case 'gameRunning':
         return <GameBox />;
       default:

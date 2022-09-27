@@ -4,11 +4,11 @@ import '@testing-library/dom';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import 'react-i18next';
 import renderWithProviders from '../__tests-utils__/test-utils.jsx';
-import PickGameFieldWidth from '../src/components/PickGameFieldWidth.jsx';
+import PickGameFieldWidthMenu from '../src/components/PickGameFieldWidthMenu.jsx';
 
 describe('pickGameFieldWidth', () => {
   test('pick width', async () => {
-    renderWithProviders(<PickGameFieldWidth />);
+    renderWithProviders(<PickGameFieldWidthMenu />);
 
     const pickGameFieldWidth3 = await screen.findByTestId('gameFieldWidth-3');
     const pickGameFieldWidth4 = await screen.findByTestId('gameFieldWidth-4');
