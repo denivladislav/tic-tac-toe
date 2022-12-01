@@ -3,7 +3,7 @@ import init from './init.jsx';
 
 const render = async () => {
   const vdom = await init();
-  const root = createRoot(document.querySelector('#root'));
+  const root = createRoot(document.querySelector('#root')!);
   root.render(vdom);
 };
 
