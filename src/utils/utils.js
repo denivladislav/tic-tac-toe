@@ -1,3 +1,8 @@
+import {
+  CONSECUTIVE_CELLS_TO_WIN,
+  MIN_NUMBER_OF_MOVES_TO_WIN,
+} from '../const.js';
+
 export const generateGameField = (gameFieldWidth) => {
   const field = [];
   for (let i = 0; i < gameFieldWidth; i += 1) {
@@ -11,10 +16,17 @@ export const generateGameField = (gameFieldWidth) => {
   return field;
 };
 
+const getConsecutiveCells = (arr, playerIndex) => arr.reduce((acc, cell) => {
+  if (cell.occupiedByPlayer === playerIndex) {
+    acc += 1;
+  }
+  return acc;
+}, 0);
+
 export const getGameResult = (moves, gameField) => {
   const gameFieldLength = gameField.length;
-  const minimumMovesToWin = 2 * gameFieldLength - 1;
-  if (moves.length < minimumMovesToWin) {
+
+  if (moves.length < MIN_NUMBER_OF_MOVES_TO_WIN) {
     return { result: 'continue', playerIndex: null };
   }
 
@@ -26,11 +38,8 @@ export const getGameResult = (moves, gameField) => {
 
   const checkIsRowWin = () => {
     const currentRow = gameField[row];
-
-    const isRowWin = !currentRow.find(
-      (cell) => cell.occupiedByPlayer !== playerIndex,
-    );
-    return isRowWin;
+    const consecutiveCells = getConsecutiveCells(currentRow, playerIndex);
+    return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
 
   const checkIsColWin = () => {
@@ -38,11 +47,8 @@ export const getGameResult = (moves, gameField) => {
       acc.push(r[col]);
       return acc;
     }, []);
-
-    const isColWin = !currentCol.find(
-      (cell) => cell.occupiedByPlayer !== playerIndex,
-    );
-    return isColWin;
+    const consecutiveCells = getConsecutiveCells(currentCol, playerIndex);
+    return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
 
   const checkIsLeftDiagWin = () => {
@@ -54,11 +60,8 @@ export const getGameResult = (moves, gameField) => {
       acc.push(r[rIndex]);
       return acc;
     }, []);
-
-    const isleftDiagWin = !leftDiag.find(
-      (cell) => cell.occupiedByPlayer !== playerIndex,
-    );
-    return isleftDiagWin;
+    const consecutiveCells = getConsecutiveCells(leftDiag, playerIndex);
+    return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
 
   const checkIsRightDiagWin = () => {
@@ -71,10 +74,8 @@ export const getGameResult = (moves, gameField) => {
       acc.push(r[righDiagCoordSum - rIndex]);
       return acc;
     }, []);
-    const isRightDiagWin = !rightDiag.find(
-      (cell) => cell.occupiedByPlayer !== playerIndex,
-    );
-    return isRightDiagWin;
+    const consecutiveCells = getConsecutiveCells(rightDiag, playerIndex);
+    return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
 
   const checkIsDraw = () => moves.length === gameFieldLength ** 2;

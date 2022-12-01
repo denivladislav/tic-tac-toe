@@ -6,7 +6,7 @@
 
 A hot-seat game for two players (mobile or pc) that supports two languages (en, ru). 
 
-After entering usernames, players pick the size of the game field. First player, who occupies a row, a column or a diagonal, wins. Any player may undo his last turn. Players swap turns after each game.
+After entering usernames, players pick the size of the game field. First player, who occupies three cells in a row, in a column or in a diagonal, wins. Any player may undo his last turn. Players swap turns after each game.
 
 ![result](https://user-images.githubusercontent.com/71961494/192490886-e34a6fe7-ea9e-43c7-998b-de09e14144d7.gif)
 
