@@ -3,8 +3,9 @@ import { Modal, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../slices/modalSlice';
-import { setGameState } from '../../slices/gameStateSlice';
+import { setGameState } from '../../slices/gameStateSlice.ts';
 import { leaveGame } from '../../slices/gameDataSlice';
+import { EGameStates } from '../../helpers/types.ts';
 
 const LeaveGameModal = () => {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ const LeaveGameModal = () => {
 
   const handleClickConfirm = () => {
     dispatch(leaveGame());
-    dispatch(setGameState('login'));
+    dispatch(setGameState(EGameStates.LOGIN));
     dispatch(closeModal());
   };
 

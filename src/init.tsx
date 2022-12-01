@@ -2,15 +2,15 @@ import React from 'react';
 import i18n from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
-import store from './slices/index.js';
+import store from './slices/index';
 import translationRU from './assets/locales/ru.json';
 import translationEN from './assets/locales/en.json';
-import App from './components/App.jsx';
+import App from './components/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/style.css';
 
-export default async () => {
+export default async (): Promise<JSX.Element> => {
   const i18nInstance = i18n.createInstance();
   await i18nInstance.init({
     lng: 'ru',

@@ -6,7 +6,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { closeModal } from '../../slices/modalSlice';
 import { restartGame, leaveGame } from '../../slices/gameDataSlice';
-import { setGameState } from '../../slices/gameStateSlice';
+import { setGameState } from '../../slices/gameStateSlice.ts';
+import { EGameStates } from '../../helpers/types.ts';
 
 const GameOverModal = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const GameOverModal = () => {
 
   const handleClickLeave = () => {
     dispatch(leaveGame());
-    dispatch(setGameState('login'));
+    dispatch(setGameState(EGameStates.LOGIN));
     dispatch(closeModal());
   };
 

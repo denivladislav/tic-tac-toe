@@ -1,7 +1,7 @@
 import {
   CONSECUTIVE_CELLS_TO_WIN,
   MIN_NUMBER_OF_MOVES_TO_WIN,
-} from '../const.js';
+} from '../const.ts';
 
 export const generateGameField = (gameFieldWidth) => {
   const field = [];
@@ -17,9 +17,16 @@ export const generateGameField = (gameFieldWidth) => {
 };
 
 const getConsecutiveCells = (arr, playerIndex) => arr.reduce((acc, cell) => {
+  if (acc === CONSECUTIVE_CELLS_TO_WIN) {
+    return acc;
+  }
+
   if (cell.occupiedByPlayer === playerIndex) {
     acc += 1;
+  } else {
+    acc = 0;
   }
+
   return acc;
 }, 0);
 

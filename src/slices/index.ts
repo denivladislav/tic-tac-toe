@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameStateReducer from './gameStateSlice.js';
+import gameStateReducer from './gameStateSlice';
 import gameDataReducer from './gameDataSlice.js';
 import modalReducer from './modalSlice.js';
 
@@ -13,9 +13,13 @@ const store = configureStore({
   reducer,
 });
 
-export const setupStore = (preloadedState) => configureStore({
+export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
+
+export const setupStore = (preloadedState: RootState) => configureStore({
   reducer,
   preloadedState,
 });
-
-export default store;

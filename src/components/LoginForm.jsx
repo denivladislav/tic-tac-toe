@@ -5,8 +5,9 @@ import { Button, Form } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { addPlayer } from '../slices/gameDataSlice';
-import { setGameState } from '../slices/gameStateSlice';
-import { MAX_NUMBER_OF_PLAYERS } from '../const';
+import { setGameState } from '../slices/gameStateSlice.ts';
+import { MAX_NUMBER_OF_PLAYERS } from '../const.ts';
+import { EGameStates } from '../helpers/types.ts';
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (players.length === MAX_NUMBER_OF_PLAYERS) {
-      dispatch(setGameState('pickGameFieldWidth'));
+      dispatch(setGameState(EGameStates.PICK_GAMEFIELD_WIDTH));
     }
   }, [players]);
 

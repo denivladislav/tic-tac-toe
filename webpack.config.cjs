@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
@@ -16,6 +15,7 @@ module.exports = {
     alias: {
       react: path.join(__dirname, 'node_modules', 'react'),
     },
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
   },
   module: {
     rules: [

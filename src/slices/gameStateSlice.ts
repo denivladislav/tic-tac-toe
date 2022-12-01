@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { EGameStates, TGameState } from '../helpers/types';
 
-const initialState = {
-  gameState: 'login',
+export interface IGameState {
+  gameState: TGameState
+}
+
+const initialState: IGameState = {
+  gameState: EGameStates.LOGIN,
 };
 
 const gameStateSlice = createSlice({

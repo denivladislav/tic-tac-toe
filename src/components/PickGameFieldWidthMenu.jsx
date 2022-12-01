@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Button, Container } from 'react-bootstrap';
-import { setGameState } from '../slices/gameStateSlice.js';
+import { setGameState } from '../slices/gameStateSlice.ts';
 import { pickGameFieldWidth } from '../slices/gameDataSlice.js';
-import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const.js';
+import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const.ts';
+import { EGameStates } from '../helpers/types.ts';
 
 const BUTTON_PREFIX = 'gameFieldWidth';
 
@@ -19,7 +20,7 @@ const PickGameFieldWidthMenu = () => {
     setSubmitting(true);
     const width = getWidth(e.target.id);
     dispatch(pickGameFieldWidth(width));
-    dispatch(setGameState('gameRunning'));
+    dispatch(setGameState(EGameStates.GAME_RUNNING));
   };
 
   return (
