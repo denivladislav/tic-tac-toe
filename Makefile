@@ -2,7 +2,7 @@ install:
 	npm install
 
 lint:
-	npx eslint . --ext js,jsx,ts,tsx
+	npm run lint
 
 develop:
 	npx webpack serve

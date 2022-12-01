@@ -7,7 +7,8 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "NODE_ENV=production npx webpack --mode production"
+    "build": "NODE_ENV=production npx webpack --mode production",
+    "lint": "eslint . --ext js,jsx,ts,tsx"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "css-loader": "^6.7.1",
     "eslint": "^8.28.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-jsx-a11y": "^6.6.1",
