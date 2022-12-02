@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Button, Container } from 'react-bootstrap';
 import { setGameState } from '../slices/gameStateSlice.ts';
-import { pickGameFieldWidth } from '../slices/gameDataSlice.js';
+import { pickGameFieldWidth } from '../slices/gameDataSlice';
 import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const.ts';
 import { EGameStates } from '../helpers/types.ts';
 

@@ -1,25 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { generateGameField } from '../utils/utils.js';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IGameResult, EGameResults, TCoords, IGameData } from '../helpers/types';
+import { generateGameField } from '../utils/utils';
 
-export const initialState = {
+export const initialState: IGameData = {
   players: [],
   currentPlayerIndex: 0,
   gameField: [],
   moves: [],
-  gameResult: { result: null, playerIndex: null },
+  gameResult: { result: EGameResults.NULL, playerIndex: null },
 };
 
 const gameDataSlice = createSlice({
   name: 'gameData',
   initialState,
   reducers: {
-    addPlayer: (state, { payload }) => {
+    addPlayer: (state, { payload }: PayloadAction<string>) => {
       state.players = [...state.players, payload];
     },
-    pickGameFieldWidth: (state, { payload }) => {
+    pickGameFieldWidth: (state, { payload }: PayloadAction<number>) => {
       state.gameField = generateGameField(payload);
     },
-    occupyCell: (state, { payload }) => {
+    occupyCell: (state, { payload }: PayloadAction<{ coords: TCoords, currentPlayerIndex: number }>) => {
       const { coords, currentPlayerIndex } = payload;
       const { row, col } = coords;
 
@@ -36,7 +37,7 @@ const gameDataSlice = createSlice({
         state.currentPlayerIndex = 0;
       }
     },
-    addResult: (state, { payload }) => {
+    addResult: (state, { payload }: PayloadAction<IGameResult>) => {
       state.gameResult = payload;
     },
     undoLastMove: (state) => {

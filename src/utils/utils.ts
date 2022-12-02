@@ -1,9 +1,10 @@
 import {
   CONSECUTIVE_CELLS_TO_WIN,
   MIN_NUMBER_OF_MOVES_TO_WIN,
-} from '../const.ts';
+} from '../const';
+import { TGameField, TCellArr, TCell, IMove, IGameResult, EGameResults } from '../helpers/types';
 
-export const generateGameField = (gameFieldWidth) => {
+export const generateGameField = (gameFieldWidth: number): TGameField => {
   const field = [];
   for (let i = 0; i < gameFieldWidth; i += 1) {
     const row = [];
@@ -16,7 +17,7 @@ export const generateGameField = (gameFieldWidth) => {
   return field;
 };
 
-const getConsecutiveCells = (arr, playerIndex) => arr.reduce((acc, cell) => {
+const getConsecutiveCells = (cellArr: TCellArr, playerIndex: number) => cellArr.reduce((acc, cell: TCell) => {
   if (acc === CONSECUTIVE_CELLS_TO_WIN) {
     return acc;
   }
@@ -30,11 +31,11 @@ const getConsecutiveCells = (arr, playerIndex) => arr.reduce((acc, cell) => {
   return acc;
 }, 0);
 
-export const getGameResult = (moves, gameField) => {
+export const getGameResult = (moves: IMove[], gameField: TGameField): IGameResult => {
   const gameFieldLength = gameField.length;
 
   if (moves.length < MIN_NUMBER_OF_MOVES_TO_WIN) {
-    return { result: 'continue', playerIndex: null };
+    return { result: EGameResults.CONTINUE, playerIndex: null };
   }
 
   const lastMove = moves[moves.length - 1];
@@ -93,12 +94,12 @@ export const getGameResult = (moves, gameField) => {
     || checkIsLeftDiagWin()
     || checkIsRightDiagWin()
   ) {
-    return { result: 'win', playerIndex };
+    return { result: EGameResults.WIN, playerIndex };
   }
 
   if (checkIsDraw()) {
-    return { result: 'draw', playerIndex: null };
+    return { result: EGameResults.DRAW, playerIndex: null };
   }
 
-  return { result: 'continue', playerIndex: null };
+  return { result: EGameResults.CONTINUE, playerIndex: null };
 };

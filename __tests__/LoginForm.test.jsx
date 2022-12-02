@@ -6,7 +6,7 @@ import { waitFor, screen, fireEvent } from '@testing-library/react';
 import 'react-i18next';
 import LoginForm from '../src/components/LoginForm.jsx';
 import renderWithProviders from '../__tests-utils__/test-utils.jsx';
-import { initialState } from '../src/slices/gameDataSlice.js';
+import { initialState } from '../src/slices/gameDataSlice';
 
 const NORMAL_USERNAME = '12345';
 const TOO_SHORT_USERNAME = '12';

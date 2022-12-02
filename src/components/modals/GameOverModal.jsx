@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { closeModal } from '../../slices/modalSlice';
 import { restartGame, leaveGame } from '../../slices/gameDataSlice';
 import { setGameState } from '../../slices/gameStateSlice.ts';
-import { EGameStates } from '../../helpers/types.ts';
+import { EGameStates, EGameResults } from '../../helpers/types.ts';
 
 const GameOverModal = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const GameOverModal = () => {
   };
 
   const renderHeader = () => {
-    const message = result === 'win' ? (
+    const message = result === EGameResults.WIN ? (
       <>{t('game.win', { player: players[playerIndex] })}</>
     ) : (
       <>{t('game.draw')}</>

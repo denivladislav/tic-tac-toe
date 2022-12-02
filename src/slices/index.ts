@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gameStateReducer from './gameStateSlice';
-import gameDataReducer from './gameDataSlice.js';
+import gameDataReducer from './gameDataSlice';
 import modalReducer from './modalSlice.js';
 
 const reducer = {

@@ -8,6 +8,7 @@ import LeaveGameButton from '../buttons/LeaveGameButton.jsx';
 import GameField from './GameField.jsx';
 import GameModal from './GameModal.jsx';
 import UndoLastMoveButton from '../buttons/UndoLastMoveButton.jsx';
+import { EGameResults } from '../../helpers/types';
 
 const GameBox = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const GameBox = () => {
   useEffect(() => {
     const gameResult = getGameResult(moves, gameField);
     const { result } = gameResult;
-    const hasGameEnded = result === 'win' || result === 'draw';
+    const hasGameEnded = result === EGameResults.WIN || result === EGameResults.DRAW;
     if (hasGameEnded) {
       dispatch(addResult(gameResult));
       dispatch(openModal('gameOver'));

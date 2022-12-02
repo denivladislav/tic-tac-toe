@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
-import { occupyCell, swapPlayers } from '../../slices/gameDataSlice.js';
+import { occupyCell, swapPlayers } from '../../slices/gameDataSlice';
 
 import PLAYER_STYLE_MAP from './const.js';
 

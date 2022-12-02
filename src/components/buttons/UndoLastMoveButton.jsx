@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import { undoLastMove } from '../../slices/gameDataSlice.js';
+import { undoLastMove } from '../../slices/gameDataSlice';
 
 const UndoLastMoveButton = () => {
   const { t } = useTranslation();
