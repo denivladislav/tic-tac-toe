@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { openModal } from '../../slices/modalSlice';
+import { EModalTypes } from '../../helpers/enums';
+import { useAppDispatch } from '../../helpers/hooks';
 
 import close from '../../assets/images/close.png';
-import { EModalTypes } from '../../helpers/enums';
 
-const LeaveGameButton = () => {
-  const dispatch = useDispatch();
+const LeaveGameButton = (): JSX.Element => {
+  const dispatch = useAppDispatch();
 
-  const handleCloseClick = () => {
+  const handleCloseClick = (): void => {
     dispatch(openModal(EModalTypes.LEAVE_GAME));
   };
 

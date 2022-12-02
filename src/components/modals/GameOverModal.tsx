@@ -1,39 +1,38 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Modal, Col, Row, Button,
-} from 'react-bootstrap';
+import { Modal, Col, Row, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { closeModal } from '../../slices/modalSlice';
 import { restartGame, leaveGame } from '../../slices/gameDataSlice';
-import { setGameState } from '../../slices/gameStateSlice.ts';
-import { EGameStates, EGameResults } from '../../helpers/enums.ts';
+import { setGameState } from '../../slices/gameStateSlice';
+import { EGameStates, EGameResults } from '../../helpers/enums';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks';
 
-const GameOverModal = () => {
-  const dispatch = useDispatch();
+const GameOverModal = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const players = useSelector((state) => state.gameData.players);
-  const { result, playerIndex } = useSelector(
+  const players = useAppSelector((state) => state.gameData.players);
+  const { result, playerIndex } = useAppSelector(
     (state) => state.gameData.gameResult,
   );
 
-  const handleClickRestart = () => {
+  const handleClickRestart = (): void => {
     dispatch(restartGame());
     dispatch(closeModal());
   };
 
-  const handleClickLeave = () => {
+  const handleClickLeave = (): void => {
     dispatch(leaveGame());
     dispatch(setGameState(EGameStates.LOGIN));
     dispatch(closeModal());
   };
 
-  const renderHeader = () => {
-    const message = result === EGameResults.WIN ? (
-      <>{t('game.win', { player: players[playerIndex] })}</>
-    ) : (
-      <>{t('game.draw')}</>
-    );
+  const renderHeader = (): JSX.Element => {
+    const message =
+      result === EGameResults.WIN ? (
+        <>{t('game.win', { player: players[playerIndex] })}</>
+      ) : (
+        <>{t('game.draw')}</>
+      );
 
     return (
       <Modal.Title>
@@ -43,7 +42,7 @@ const GameOverModal = () => {
     );
   };
 
-  const renderBody = () => (
+  const renderBody = (): JSX.Element => (
     <Col className="text-center">
       <Button
         className="mx-2"

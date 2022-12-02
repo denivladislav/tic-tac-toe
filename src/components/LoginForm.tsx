@@ -1,19 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { addPlayer } from '../slices/gameDataSlice';
-import { setGameState } from '../slices/gameStateSlice.ts';
-import { MAX_NUMBER_OF_PLAYERS } from '../const.ts';
-import { EGameStates } from '../helpers/enums.ts';
+import { setGameState } from '../slices/gameStateSlice';
+import { MAX_NUMBER_OF_PLAYERS } from '../const';
+import { EGameStates } from '../helpers/enums';
+import { useAppDispatch, useAppSelector } from '../helpers/hooks';
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const inputRef = useRef();
-  const players = useSelector((state) => state.gameData.players);
+  const dispatch = useAppDispatch();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const players = useAppSelector((state) => state.gameData.players);
   const currentPlayer = players.length + 1;
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const LoginForm = () => {
   }, [players]);
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
   const loginSchema = Yup.object().shape({
@@ -42,7 +42,7 @@ const LoginForm = () => {
     onSubmit: ({ username }, { resetForm }) => {
       dispatch(addPlayer(username));
       resetForm();
-      inputRef.current.focus();
+      inputRef.current?.focus();
     },
   });
 

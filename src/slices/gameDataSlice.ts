@@ -4,16 +4,16 @@ import { TMove, TCoords, TGameField, TGameResult } from '../helpers/types';
 import { generateGameField } from '../utils/utils';
 
 export interface IGameResult {
-  result: TGameResult,
-  playerIndex: number | null,
+  result: TGameResult;
+  playerIndex: number;
 }
 
 interface IGameData {
-  players: string[],
-  currentPlayerIndex: number,
-  gameField: TGameField,
-  moves: TMove[],
-  gameResult: IGameResult,
+  players: string[];
+  currentPlayerIndex: number;
+  gameField: TGameField;
+  moves: TMove[];
+  gameResult: IGameResult;
 }
 
 export const initialState: IGameData = {
@@ -21,7 +21,7 @@ export const initialState: IGameData = {
   currentPlayerIndex: 0,
   gameField: [],
   moves: [],
-  gameResult: { result: EGameResults.NULL, playerIndex: null },
+  gameResult: { result: EGameResults.NULL, playerIndex: 0 },
 };
 
 const gameDataSlice = createSlice({
@@ -34,7 +34,12 @@ const gameDataSlice = createSlice({
     pickGameFieldWidth: (state, { payload }: PayloadAction<number>) => {
       state.gameField = generateGameField(payload);
     },
-    occupyCell: (state, { payload }: PayloadAction<{ coords: TCoords, currentPlayerIndex: number }>) => {
+    occupyCell: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{ coords: TCoords; currentPlayerIndex: number }>,
+    ) => {
       const { coords, currentPlayerIndex } = payload;
       const { row, col } = coords;
 

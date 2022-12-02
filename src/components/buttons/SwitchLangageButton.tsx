@@ -3,12 +3,13 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useTranslation } from 'react-i18next';
 
-const SwitchLanguageButtons = () => {
+const SwitchLanguageButtons = (): JSX.Element => {
   const { t, i18n } = useTranslation();
 
-  const getLanguageButtonVariant = (lng) => (i18n.language === lng ? 'secondary' : 'outline-secondary');
+  const getLanguageButtonVariant = (lng: string): string =>
+    i18n.language === lng ? 'secondary' : 'outline-secondary';
 
-  const handleChangeLanguage = (lng) => {
+  const handleChangeLanguage = (lng: string): void => {
     i18n.changeLanguage(lng);
   };
 

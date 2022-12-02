@@ -11,7 +11,7 @@ After entering usernames, players pick the size of the game field. First player,
 ![result](https://user-images.githubusercontent.com/71961494/192490886-e34a6fe7-ea9e-43c7-998b-de09e14144d7.gif)
 
 ### Stack
-- React, Redux Toolkit, React Bootstrap, Jest, React Testing Library, formik, i18next
+- TypeScript, React, Redux Toolkit, React Bootstrap, Jest, React Testing Library, formik, i18next
 - webpack, ESLint, Prettier, husky
 
 ### How To Use Locally:

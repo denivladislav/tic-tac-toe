@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from '../../helpers/hooks';
 
-import PLAYER_STYLE_MAP from './const.js';
+import PLAYER_STYLE_MAP from './const';
 
-const GameInfoPanel = () => {
+const GameInfoPanel = (): JSX.Element => {
   const { t } = useTranslation();
-  const players = useSelector((state) => state.gameData.players);
-  const currentPlayerIndex = useSelector(
+  const players = useAppSelector((state) => state.gameData.players);
+  const currentPlayerIndex = useAppSelector(
     (state) => state.gameData.currentPlayerIndex,
   );
 
@@ -15,8 +15,7 @@ const GameInfoPanel = () => {
 
   return (
     <h2>
-      {t('game.playerTurn')}
-      {' '}
+      {t('game.playerTurn')}{' '}
       <span className={`text-${color}`}>{players[currentPlayerIndex]}</span>
     </h2>
   );

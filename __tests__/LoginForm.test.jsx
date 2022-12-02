@@ -4,7 +4,7 @@ import '@testing-library/dom';
 import i18n from 'i18next';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import 'react-i18next';
-import LoginForm from '../src/components/LoginForm.jsx';
+import LoginForm from '../src/components/LoginForm.tsx';
 import renderWithProviders from '../__tests-utils__/test-utils.jsx';
 import { initialState } from '../src/slices/gameDataSlice';
 

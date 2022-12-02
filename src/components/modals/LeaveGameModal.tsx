@@ -1,31 +1,31 @@
 import React from 'react';
 import { Modal, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { closeModal } from '../../slices/modalSlice';
-import { setGameState } from '../../slices/gameStateSlice.ts';
+import { setGameState } from '../../slices/gameStateSlice';
 import { leaveGame } from '../../slices/gameDataSlice';
-import { EGameStates } from '../../helpers/enums.ts';
+import { EGameStates } from '../../helpers/enums';
+import { useAppDispatch } from '../../helpers/hooks';
 
-const LeaveGameModal = () => {
+const LeaveGameModal = (): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const handleClickConfirm = () => {
+  const handleClickConfirm = (): void => {
     dispatch(leaveGame());
     dispatch(setGameState(EGameStates.LOGIN));
     dispatch(closeModal());
   };
 
-  const handleClickCancel = () => {
+  const handleClickCancel = (): void => {
     dispatch(closeModal());
   };
 
-  const renderHeader = () => (
+  const renderHeader = (): JSX.Element => (
     <Modal.Title>{t('game.confirmLeave')}</Modal.Title>
   );
 
-  const renderBody = () => (
+  const renderBody = (): JSX.Element => (
     <Col className="text-center">
       <Button
         className="mx-2"

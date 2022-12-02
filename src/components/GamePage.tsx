@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import LoginForm from './LoginForm.jsx';
-import GameBox from './GameBox/GameBox.jsx';
-import PickGameFieldWidthMenu from './PickGameFieldWidthMenu.jsx';
-import SwitchLanguageButtons from './buttons/SwitchLangageButton.jsx';
+import LoginForm from './LoginForm';
+import GameBox from './GameBox/GameBox';
+import PickGameFieldWidthMenu from './PickGameFieldWidthMenu';
+import SwitchLanguageButtons from './buttons/SwitchLangageButton';
 import { useAppSelector } from '../helpers/hooks';
 import { EGameStates } from '../helpers/enums';
 

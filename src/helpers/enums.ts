@@ -16,3 +16,8 @@ export enum EModalTypes {
   LEAVE_GAME = 'LEAVE_GAME',
   GAME_OVER = 'GAME_OVER',
 }
+
+export enum EActiveModalTypes {
+  LEAVE_GAME = 'LEAVE_GAME',
+  GAME_OVER = 'GAME_OVER',
+}

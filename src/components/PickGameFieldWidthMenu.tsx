@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { Button, Container } from 'react-bootstrap';
-import { setGameState } from '../slices/gameStateSlice.ts';
+import { setGameState } from '../slices/gameStateSlice';
 import { pickGameFieldWidth } from '../slices/gameDataSlice';
-import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const.ts';
-import { EGameStates } from '../helpers/enums.ts';
+import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const';
+import { EGameStates } from '../helpers/enums';
+import { useAppDispatch } from '../helpers/hooks';
 
 const BUTTON_PREFIX = 'gameFieldWidth';
 
-const getWidth = (id) => Number(id.split('-')[1]);
+const getWidth = (id: string) => Number(id.split('-')[1]);
 
-const PickGameFieldWidthMenu = () => {
+const PickGameFieldWidthMenu = (): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isSubmitting, setSubmitting] = useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent<HTMLElement>): void => {
     setSubmitting(true);
-    const width = getWidth(e.target.id);
+    const width = getWidth((e.target as HTMLInputElement).id);
     dispatch(pickGameFieldWidth(width));
     dispatch(setGameState(EGameStates.GAME_RUNNING));
   };

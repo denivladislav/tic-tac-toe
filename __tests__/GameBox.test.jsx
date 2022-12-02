@@ -8,7 +8,7 @@ import renderWithProviders, {
   getField,
 } from '../__tests-utils__/test-utils.jsx';
 import { initialState } from '../src/slices/gameDataSlice';
-import GameBox from '../src/components/GameBox/GameBox.jsx';
+import GameBox from '../src/components/GameBox/GameBox.tsx';
 import preWinMoves from '../__fixtures__/preWinMoves.json';
 import preDrawMoves from '../__fixtures__/preDrawMoves.json';
 

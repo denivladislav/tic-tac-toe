@@ -1,14 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import { occupyCell, swapPlayers } from '../../slices/gameDataSlice';
+import { TCoords } from '../../helpers/types';
+import { useAppSelector } from '../../helpers/hooks';
 
-import PLAYER_STYLE_MAP from './const.js';
+import PLAYER_STYLE_MAP from './const';
 
-const Cell = ({ cellId, coords }) => {
+const Cell = ({
+  cellId,
+  coords,
+}: {
+  cellId: string;
+  coords: TCoords;
+}): JSX.Element => {
   const dispatch = useDispatch();
-  const gameField = useSelector((state) => state.gameData.gameField);
-  const currentPlayerIndex = useSelector(
+  const gameField = useAppSelector((state) => state.gameData.gameField);
+  const currentPlayerIndex = useAppSelector(
     (state) => state.gameData.currentPlayerIndex,
   );
 
@@ -42,7 +50,7 @@ const Cell = ({ cellId, coords }) => {
         />
       );
     }
-    const { img, alt } = PLAYER_STYLE_MAP[currentCell.occupiedByPlayer];
+    const { img, alt } = PLAYER_STYLE_MAP[currentCell.occupiedByPlayer!];
     return <img className="image" src={img} alt={alt} />;
   };
 

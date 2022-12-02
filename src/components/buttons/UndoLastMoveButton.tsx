@@ -1,17 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { undoLastMove } from '../../slices/gameDataSlice';
+import { useAppDispatch, useAppSelector } from '../../helpers/hooks';
 
-const UndoLastMoveButton = () => {
+const UndoLastMoveButton = (): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const moves = useSelector((state) => state.gameData.moves);
+  const dispatch = useAppDispatch();
+  const moves = useAppSelector((state) => state.gameData.moves);
 
   const isDisabled = moves.length === 0;
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     dispatch(undoLastMove());
   };
 

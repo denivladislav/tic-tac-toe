@@ -4,7 +4,7 @@ import '@testing-library/dom';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import 'react-i18next';
 import renderWithProviders from '../__tests-utils__/test-utils.jsx';
-import PickGameFieldWidthMenu from '../src/components/PickGameFieldWidthMenu.jsx';
+import PickGameFieldWidthMenu from '../src/components/PickGameFieldWidthMenu.tsx';
 
 describe('pickGameFieldWidth', () => {
   test('pick width', async () => {
