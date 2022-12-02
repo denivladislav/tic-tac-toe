@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { closeModal } from '../../slices/modalSlice';
 import { setGameState } from '../../slices/gameStateSlice.ts';
 import { leaveGame } from '../../slices/gameDataSlice';
-import { EGameStates } from '../../helpers/types.ts';
+import { EGameStates } from '../../helpers/enums.ts';
 
 const LeaveGameModal = () => {
   const { t } = useTranslation();

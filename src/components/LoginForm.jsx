@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { addPlayer } from '../slices/gameDataSlice';
 import { setGameState } from '../slices/gameStateSlice.ts';
 import { MAX_NUMBER_OF_PLAYERS } from '../const.ts';
-import { EGameStates } from '../helpers/types.ts';
+import { EGameStates } from '../helpers/enums.ts';
 
 const LoginForm = () => {
   const { t } = useTranslation();

@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../slices/modalSlice';
 
 import close from '../../assets/images/close.png';
+import { EModalTypes } from '../../helpers/enums';
 
 const LeaveGameButton = () => {
   const dispatch = useDispatch();
 
   const handleCloseClick = () => {
-    dispatch(openModal('leaveGame'));
+    dispatch(openModal(EModalTypes.LEAVE_GAME));
   };
 
   return (

@@ -4,8 +4,8 @@ import LoginForm from './LoginForm.jsx';
 import GameBox from './GameBox/GameBox.jsx';
 import PickGameFieldWidthMenu from './PickGameFieldWidthMenu.jsx';
 import SwitchLanguageButtons from './buttons/SwitchLangageButton.jsx';
-import { EGameStates } from '../helpers/types';
 import { useAppSelector } from '../helpers/hooks';
+import { EGameStates } from '../helpers/enums';
 
 const GamePage = (): JSX.Element => {
   const gameState = useAppSelector((state) => state.gameState.gameState);

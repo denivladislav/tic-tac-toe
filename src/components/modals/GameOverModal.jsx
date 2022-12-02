@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { closeModal } from '../../slices/modalSlice';
 import { restartGame, leaveGame } from '../../slices/gameDataSlice';
 import { setGameState } from '../../slices/gameStateSlice.ts';
-import { EGameStates, EGameResults } from '../../helpers/types.ts';
+import { EGameStates, EGameResults } from '../../helpers/enums.ts';
 
 const GameOverModal = () => {
   const dispatch = useDispatch();

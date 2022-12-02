@@ -2,7 +2,9 @@ import {
   CONSECUTIVE_CELLS_TO_WIN,
   MIN_NUMBER_OF_MOVES_TO_WIN,
 } from '../const';
-import { TGameField, TCellArr, TCell, IMove, IGameResult, EGameResults } from '../helpers/types';
+import { EGameResults } from '../helpers/enums';
+import { TGameField, TCellArr, TCell, TMove } from '../helpers/types';
+import { IGameResult } from '../slices/gameDataSlice';
 
 export const generateGameField = (gameFieldWidth: number): TGameField => {
   const field = [];
@@ -31,7 +33,7 @@ const getConsecutiveCells = (cellArr: TCellArr, playerIndex: number) => cellArr.
   return acc;
 }, 0);
 
-export const getGameResult = (moves: IMove[], gameField: TGameField): IGameResult => {
+export const getGameResult = (moves: TMove[], gameField: TGameField): IGameResult => {
   const gameFieldLength = gameField.length;
 
   if (moves.length < MIN_NUMBER_OF_MOVES_TO_WIN) {

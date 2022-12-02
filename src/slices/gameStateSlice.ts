@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { EGameStates, TGameState } from '../helpers/types';
+import { TGameState } from '../helpers/types';
+import { EGameStates } from '../helpers/enums';
 
-export interface IGameState {
-  gameState: TGameState
+interface IGameState {
+  gameState: TGameState,
 }
 
 const initialState: IGameState = {

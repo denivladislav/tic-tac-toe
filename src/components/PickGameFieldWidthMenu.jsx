@@ -5,7 +5,7 @@ import { Button, Container } from 'react-bootstrap';
 import { setGameState } from '../slices/gameStateSlice.ts';
 import { pickGameFieldWidth } from '../slices/gameDataSlice';
 import { AVAILABLE_GAME_FIELD_WIDTHS } from '../const.ts';
-import { EGameStates } from '../helpers/types.ts';
+import { EGameStates } from '../helpers/enums.ts';
 
 const BUTTON_PREFIX = 'gameFieldWidth';
 

@@ -1,6 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGameResult, EGameResults, TCoords, IGameData } from '../helpers/types';
+import { EGameResults } from '../helpers/enums';
+import { TMove, TCoords, TGameField, TGameResult } from '../helpers/types';
 import { generateGameField } from '../utils/utils';
+
+export interface IGameResult {
+  result: TGameResult,
+  playerIndex: number | null,
+}
+
+interface IGameData {
+  players: string[],
+  currentPlayerIndex: number,
+  gameField: TGameField,
+  moves: TMove[],
+  gameResult: IGameResult,
+}
 
 export const initialState: IGameData = {
   players: [],
