@@ -1,7 +1,4 @@
-import {
-  CONSECUTIVE_CELLS_TO_WIN,
-  MIN_NUMBER_OF_MOVES_TO_WIN,
-} from '../const';
+import { CONSECUTIVE_CELLS_TO_WIN, MIN_NUMBER_OF_MOVES_TO_WIN } from '../const';
 import { EGameResults } from '../helpers/enums';
 import { TGameField, TCellArr, TCell, TMove } from '../helpers/types';
 import { IGameResult } from '../slices/gameDataSlice';
@@ -19,26 +16,32 @@ export const generateGameField = (gameFieldWidth: number): TGameField => {
   return field;
 };
 
-const getConsecutiveCells = (cellArr: TCellArr, playerIndex: number) => cellArr.reduce((acc, cell: TCell) => {
-  if (acc === CONSECUTIVE_CELLS_TO_WIN) {
+const getConsecutiveCells = (cellArr: TCellArr, playerIndex: number) =>
+  cellArr.reduce((acc, cell: TCell) => {
+    if (acc === CONSECUTIVE_CELLS_TO_WIN) {
+      return acc;
+    }
+
+    if (cell.occupiedByPlayer === playerIndex) {
+      acc += 1;
+    } else {
+      acc = 0;
+    }
+
     return acc;
-  }
+  }, 0);
 
-  if (cell.occupiedByPlayer === playerIndex) {
-    acc += 1;
-  } else {
-    acc = 0;
-  }
-
-  return acc;
-}, 0);
-
-export const getGameResult = (moves: TMove[], gameField: TGameField): IGameResult => {
+export const getGameResult = (
+  moves: TMove[],
+  gameField: TGameField,
+): IGameResult => {
   const gameFieldLength = gameField.length;
 
   if (moves.length < MIN_NUMBER_OF_MOVES_TO_WIN) {
-    return { result: EGameResults.CONTINUE, playerIndex: null };
+    return { result: EGameResults.CONTINUE, playerIndex: 0 };
   }
+
+  console.log('I CHECK!');
 
   const lastMove = moves[moves.length - 1];
   const {
@@ -62,28 +65,38 @@ export const getGameResult = (moves: TMove[], gameField: TGameField): IGameResul
   };
 
   const checkIsLeftDiagWin = () => {
-    if (row !== col) {
+    const diff = row - col;
+    if (
+      diff > gameFieldLength - CONSECUTIVE_CELLS_TO_WIN ||
+      diff < CONSECUTIVE_CELLS_TO_WIN - gameFieldLength
+    ) {
       return false;
     }
 
     const leftDiag = gameField.reduce((acc, r, rIndex) => {
-      acc.push(r[rIndex]);
+      if (r[rIndex - diff]) {
+        acc.push(r[rIndex - diff]);
+      }
       return acc;
     }, []);
+
     const consecutiveCells = getConsecutiveCells(leftDiag, playerIndex);
     return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
 
   const checkIsRightDiagWin = () => {
-    const righDiagCoordSum = gameFieldLength - 1;
-    if (row + col !== righDiagCoordSum) {
+    const sum = row + col;
+    if (sum < CONSECUTIVE_CELLS_TO_WIN - 1 || sum > (gameFieldLength - 2) * 2) {
       return false;
     }
 
     const rightDiag = gameField.reduce((acc, r, rIndex) => {
-      acc.push(r[righDiagCoordSum - rIndex]);
+      if (r[sum - rIndex]) {
+        acc.push(r[sum - rIndex]);
+      }
       return acc;
     }, []);
+
     const consecutiveCells = getConsecutiveCells(rightDiag, playerIndex);
     return consecutiveCells === CONSECUTIVE_CELLS_TO_WIN;
   };
@@ -91,17 +104,17 @@ export const getGameResult = (moves: TMove[], gameField: TGameField): IGameResul
   const checkIsDraw = () => moves.length === gameFieldLength ** 2;
 
   if (
-    checkIsRowWin()
-    || checkIsColWin()
-    || checkIsLeftDiagWin()
-    || checkIsRightDiagWin()
+    checkIsRowWin() ||
+    checkIsColWin() ||
+    checkIsLeftDiagWin() ||
+    checkIsRightDiagWin()
   ) {
     return { result: EGameResults.WIN, playerIndex };
   }
 
   if (checkIsDraw()) {
-    return { result: EGameResults.DRAW, playerIndex: null };
+    return { result: EGameResults.DRAW, playerIndex: 0 };
   }
 
-  return { result: EGameResults.CONTINUE, playerIndex: null };
+  return { result: EGameResults.CONTINUE, playerIndex: 0 };
 };
