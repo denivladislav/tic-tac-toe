@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { EGameResults } from '../helpers/enums';
 import { TMove, TCoords, TGameField, TGameResult } from '../helpers/types';
-import { generateGameField } from '../utils/utils';
+import { generateGameField } from '../helpers/utils';
 
 export interface IGameResult {
   result: TGameResult;

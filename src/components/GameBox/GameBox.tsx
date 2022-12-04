@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getGameResult } from '../../utils/utils';
+import { getGameResult } from '../../helpers/utils';
 import { openModal } from '../../slices/modalSlice';
 import { addResult } from '../../slices/gameDataSlice';
 import GameInfoPanel from './GameInfoPanel';

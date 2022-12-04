@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18next-tests.js';
 import { setupStore } from '../src/slices/index.ts';
-import { generateGameField } from '../src/utils/utils.ts';
+import { generateGameField } from '../src/helpers/utils.ts';
 
 export const getField = (moves, width = 3) => {
   const field = generateGameField(width);

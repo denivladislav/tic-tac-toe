@@ -1,6 +1,6 @@
 import { CONSECUTIVE_CELLS_TO_WIN, MIN_NUMBER_OF_MOVES_TO_WIN } from '../const';
-import { EGameResults } from '../helpers/enums';
-import { TGameField, TCellArr, TCell, TMove } from '../helpers/types';
+import { EGameResults } from './enums';
+import { TGameField, TCellArr, TCell, TMove } from './types';
 import { IGameResult } from '../slices/gameDataSlice';
 
 export const generateGameField = (gameFieldWidth: number): TGameField => {
